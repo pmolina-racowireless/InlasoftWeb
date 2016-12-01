@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{60B93537-CA16-4FE1-86C5-A72E10A105F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E4B5FD89-E8EE-47C3-9229-AD8C90EBAB47}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "InlasoftWeb", "src\InlasoftWeb\InlasoftWeb.xproj", "{BF2DC2EE-3636-44FE-88E9-BD7BE44E267C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF2DC2EE-3636-44FE-88E9-BD7BE44E267C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF2DC2EE-3636-44FE-88E9-BD7BE44E267C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF2DC2EE-3636-44FE-88E9-BD7BE44E267C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF2DC2EE-3636-44FE-88E9-BD7BE44E267C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF2DC2EE-3636-44FE-88E9-BD7BE44E267C} = {60B93537-CA16-4FE1-86C5-A72E10A105F4}
+	EndGlobalSection
+EndGlobal
