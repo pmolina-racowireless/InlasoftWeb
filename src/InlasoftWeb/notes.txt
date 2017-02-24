@@ -1,0 +1,2 @@
+http://www.blinkingcaret.com/2016/11/30/asp-net-identity-core-from-scratch/
+http://bootswatch.com/
