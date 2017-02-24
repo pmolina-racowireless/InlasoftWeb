@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Razor;
 
 namespace InlasoftWeb.Models
 {
@@ -38,5 +36,8 @@ namespace InlasoftWeb.Models
             Errors = Errors.Concat(errors);
             return Errors;
         }
+
+
     }
+
 }
