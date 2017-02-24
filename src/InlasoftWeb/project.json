@@ -23,7 +23,7 @@
   },
 
   "frameworks": {
-    "netcoreapp1.0": {
+    "netcoreapp1.1": {
       "imports": [
         "dotnet5.6",
         "portable-net45+win8"
@@ -34,6 +34,11 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
+  },
+
+  "runtimes": {
+    "win10-x64": {},
+    "win81-x64": {} 
   },
 
   "runtimeOptions": {
