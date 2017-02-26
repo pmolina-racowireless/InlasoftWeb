@@ -21,7 +21,11 @@
     "Microsoft.Extensions.Logging.Console": "1.1.0",
     "Microsoft.Extensions.Logging.Debug": "1.1.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
-    "Microsoft.NETCore.App": "1.1.0"
+    "Microsoft.NETCore.App": "1.1.0",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Core": "1.1.0-preview4-final",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.0-msbuild3-final",
+    "Microsoft.VisualStudio.Web.CodeGeneration.Tools": "1.1.0-preview4-final",
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": "1.1.0-preview4-final"
   },
 
   "tools": {
