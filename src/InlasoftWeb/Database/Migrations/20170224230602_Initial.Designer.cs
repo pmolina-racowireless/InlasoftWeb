@@ -1,11 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace InlasoftWeb.Migrations
+namespace InlasoftWeb.Database.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
     [Migration("20170224230602_Initial")]

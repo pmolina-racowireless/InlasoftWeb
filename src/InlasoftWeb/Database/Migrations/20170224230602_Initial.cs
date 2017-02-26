@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace InlasoftWeb.Migrations
+namespace InlasoftWeb.Database.Migrations
 {
     public partial class Initial : Migration
     {
