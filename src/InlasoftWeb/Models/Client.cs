@@ -11,5 +11,8 @@ namespace InlasoftWeb.Models
         public string ClientName { get; set; }
         public string Address { get; set; }
 
+        public List<ClientBranch> ClientBranches { get; set; }
+        public List<Case> Cases { get; set; }
+
     }
 }

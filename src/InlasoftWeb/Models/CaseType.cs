@@ -9,7 +9,10 @@ namespace InlasoftWeb.Models
     {
         public int CaseTypeId { get; set; }
         public string CaseTypeName { get; set; }
-        public ICollection<CaseSubType> CaseSubTypes { get; set; }
+
+        public List<CaseSubType> CaseSubTypes { get; set; }
+        public List<Case> Cases { get; set; }
+
 
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InlasoftWeb.Database
 {
-    public class InlasoftDbContext : DbContext
+    public class InlasoftDbContext : IdentityDbContext
     {
 
         public DbSet<Case> Cases { get; set; }

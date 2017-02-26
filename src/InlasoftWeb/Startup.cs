@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InlasoftWeb.Database;
+using InlasoftWeb.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -40,20 +41,26 @@ namespace InlasoftWeb
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddDbContext<IdentityDbContext>(
+            //services.AddDbContext<IdentityDbContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+            //    optionBuilder => optionBuilder.MigrationsAssembly("InlasoftWeb")));
+
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
+
+            services.AddDbContext<InlasoftDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 optionBuilder => optionBuilder.MigrationsAssembly("InlasoftWeb")));
-            services.AddDbContext<InlasoftDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<IdentityDbContext>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<InlasoftDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IdentityDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, InlasoftDbContext dbContext)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
