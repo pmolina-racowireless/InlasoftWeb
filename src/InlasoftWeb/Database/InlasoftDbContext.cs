@@ -12,6 +12,7 @@ namespace InlasoftWeb.Database
     {
 
         public DbSet<Case> Cases { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public InlasoftDbContext(DbContextOptions<InlasoftDbContext> options)
             : base(options)

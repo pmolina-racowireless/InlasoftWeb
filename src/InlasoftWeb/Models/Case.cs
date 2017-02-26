@@ -18,7 +18,6 @@ namespace InlasoftWeb.Models
         public int ClientBranchId { get; set; }
         public string Cadastral { get; set; }
 
-        public CaseType CaseType { get; set; }
         public CaseSubType CaseSubType { get; set; }
         public Firm Firm { get; set; }
         public Client Client { get; set; }

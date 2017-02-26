@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using InlasoftWeb.Database;
 
-namespace InlasoftWeb.Database.Migrations
+namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    partial class InlasoftDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170226111405_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -51,8 +52,6 @@ namespace InlasoftWeb.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CaseSubTypeId");
-
-                    b.HasIndex("CaseTypeId");
 
                     b.HasIndex("ClientBranchId");
 
@@ -354,34 +353,29 @@ namespace InlasoftWeb.Database.Migrations
             modelBuilder.Entity("InlasoftWeb.Models.Case", b =>
                 {
                     b.HasOne("InlasoftWeb.Models.CaseSubType", "CaseSubType")
-                        .WithMany("Cases")
+                        .WithMany()
                         .HasForeignKey("CaseSubTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("InlasoftWeb.Models.CaseType", "CaseType")
-                        .WithMany("Cases")
-                        .HasForeignKey("CaseTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("InlasoftWeb.Models.ClientBranch", "ClientBranch")
-                        .WithMany("Cases")
+                        .WithMany()
                         .HasForeignKey("ClientBranchId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("InlasoftWeb.Models.Client", "Client")
-                        .WithMany("Cases")
+                        .WithMany()
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("InlasoftWeb.Models.Firm", "Firm")
-                        .WithMany("Cases")
+                        .WithMany()
                         .HasForeignKey("FirmId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.CaseSubType", b =>
                 {
-                    b.HasOne("InlasoftWeb.Models.CaseType")
+                    b.HasOne("InlasoftWeb.Models.CaseType", "CaseType")
                         .WithMany("CaseSubTypes")
                         .HasForeignKey("CaseTypeId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -11,7 +11,6 @@ namespace InlasoftWeb.Models
         public string CaseTypeName { get; set; }
 
         public List<CaseSubType> CaseSubTypes { get; set; }
-        public List<Case> Cases { get; set; }
 
 
     }
