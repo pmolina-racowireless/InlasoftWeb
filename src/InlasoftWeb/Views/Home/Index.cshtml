@@ -1,4 +1,8 @@
-﻿<h1>Home</h1>
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
 
 @if (User.Identity.IsAuthenticated)
 {

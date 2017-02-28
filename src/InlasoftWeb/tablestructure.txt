@@ -1,0 +1,9 @@
+fechaini
+ncaso = contraparte
+nmateria = tmateria -> hacer tabla aparte
+nservicio -> cservicio -> hacer tabla servicio
+materia -> descripcion
+sucursal -> sucursal -> hacer tabla aparte
+catastral 
+
+
