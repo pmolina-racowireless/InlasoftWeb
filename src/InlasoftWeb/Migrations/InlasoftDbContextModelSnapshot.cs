@@ -16,87 +16,64 @@ namespace InlasoftWeb.Migrations
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("InlasoftWeb.Models.Case", b =>
+            modelBuilder.Entity("InlasoftWeb.Models.Caso", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Cadastral");
+                    b.Property<int>("CasoId");
 
-                    b.Property<int>("CaseId");
+                    b.Property<string>("Catastro");
 
-                    b.Property<int>("CaseSubTypeId");
+                    b.Property<int>("ClienteId");
 
-                    b.Property<int>("CaseTypeId");
-
-                    b.Property<int>("ClientBranchId");
-
-                    b.Property<int>("ClientId");
-
-                    b.Property<string>("Counterparty");
+                    b.Property<string>("Contraparte");
 
                     b.Property<DateTime?>("CreatedDate");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Descripcion");
 
-                    b.Property<int>("FirmId");
+                    b.Property<DateTime>("FechaInicio");
+
+                    b.Property<int>("FirmaId");
 
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<DateTime>("StartDate");
+                    b.Property<int>("MateriaId");
+
+                    b.Property<int?>("ServicioId");
+
+                    b.Property<int>("SucursalId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CaseSubTypeId");
+                    b.HasIndex("ClienteId");
 
-                    b.HasIndex("ClientBranchId");
+                    b.HasIndex("FirmaId");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ServicioId");
 
-                    b.HasIndex("FirmId");
+                    b.HasIndex("SucursalId");
 
-                    b.ToTable("Cases");
+                    b.ToTable("Casos");
                 });
 
-            modelBuilder.Entity("InlasoftWeb.Models.CaseSubType", b =>
+            modelBuilder.Entity("InlasoftWeb.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CaseSubTypeId");
+                    b.Property<int>("ClienteId");
 
-                    b.Property<string>("CaseSubTypeName");
-
-                    b.Property<int>("CaseTypeId");
+                    b.Property<string>("ClienteNombre");
 
                     b.Property<DateTime?>("CreatedDate");
 
-                    b.Property<bool>("IsActive");
-
-                    b.Property<DateTime?>("LastModifiedDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CaseTypeId");
-
-                    b.ToTable("CaseSubType");
-                });
-
-            modelBuilder.Entity("InlasoftWeb.Models.CaseType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CaseTypeId");
-
-                    b.Property<string>("CaseTypeName");
-
-                    b.Property<DateTime?>("CreatedDate");
+                    b.Property<string>("Direccion");
 
                     b.Property<bool>("IsActive");
 
@@ -104,71 +81,94 @@ namespace InlasoftWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CaseType");
+                    b.ToTable("Cliente");
                 });
 
-            modelBuilder.Entity("InlasoftWeb.Models.Client", b =>
+            modelBuilder.Entity("InlasoftWeb.Models.Firma", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
-
-                    b.Property<int>("ClientId");
-
-                    b.Property<string>("ClientName");
-
-                    b.Property<DateTime?>("CreatedDate");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<DateTime?>("LastModifiedDate");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Client");
-                });
-
-            modelBuilder.Entity("InlasoftWeb.Models.ClientBranch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
-
-                    b.Property<int>("ClientBranchId");
-
-                    b.Property<string>("ClientBranchName");
-
-                    b.Property<int>("ClientId");
-
-                    b.Property<DateTime?>("CreatedDate");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<DateTime?>("LastModifiedDate");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.ToTable("ClientBranch");
-                });
-
-            modelBuilder.Entity("InlasoftWeb.Models.Firm", b =>
-                {
-                    b.Property<int>("FirmId")
+                    b.Property<int>("FirmaId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Direccion");
 
-                    b.Property<string>("FirmName");
+                    b.Property<string>("FirmaNombre");
 
-                    b.HasKey("FirmId");
+                    b.HasKey("FirmaId");
 
-                    b.ToTable("Firm");
+                    b.ToTable("Firma");
+                });
+
+            modelBuilder.Entity("InlasoftWeb.Models.Materia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime?>("LastModifiedDate");
+
+                    b.Property<int>("MateriaId");
+
+                    b.Property<string>("MateriaNombre");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Materia");
+                });
+
+            modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime?>("LastModifiedDate");
+
+                    b.Property<int>("MateriaId");
+
+                    b.Property<int>("ServicioId");
+
+                    b.Property<string>("ServicioNombre");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MateriaId");
+
+                    b.ToTable("Servicio");
+                });
+
+            modelBuilder.Entity("InlasoftWeb.Models.Sucursal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ClienteId");
+
+                    b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<string>("Direccion");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime?>("LastModifiedDate");
+
+                    b.Property<int>("SucursalId");
+
+                    b.Property<string>("SucursalNombre");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Sucursal");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -340,51 +340,50 @@ namespace InlasoftWeb.Migrations
                     b.Property<int>("ApplicationUserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("FirmId");
+                    b.Property<int>("FirmaId");
 
-                    b.HasIndex("FirmId");
+                    b.HasIndex("FirmaId");
 
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
-            modelBuilder.Entity("InlasoftWeb.Models.Case", b =>
+            modelBuilder.Entity("InlasoftWeb.Models.Caso", b =>
                 {
-                    b.HasOne("InlasoftWeb.Models.CaseSubType", "CaseSubType")
-                        .WithMany()
-                        .HasForeignKey("CaseSubTypeId")
+                    b.HasOne("InlasoftWeb.Models.Cliente", "Cliente")
+                        .WithMany("Casos")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("InlasoftWeb.Models.ClientBranch", "ClientBranch")
+                    b.HasOne("InlasoftWeb.Models.Firma", "Firma")
                         .WithMany()
-                        .HasForeignKey("ClientBranchId")
+                        .HasForeignKey("FirmaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("InlasoftWeb.Models.Client", "Client")
+                    b.HasOne("InlasoftWeb.Models.Servicio", "Servicio")
                         .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ServicioId");
 
-                    b.HasOne("InlasoftWeb.Models.Firm", "Firm")
+                    b.HasOne("InlasoftWeb.Models.Sucursal", "Sucursal")
                         .WithMany()
-                        .HasForeignKey("FirmId")
+                        .HasForeignKey("SucursalId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("InlasoftWeb.Models.CaseSubType", b =>
+            modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>
                 {
-                    b.HasOne("InlasoftWeb.Models.CaseType", "CaseType")
-                        .WithMany("CaseSubTypes")
-                        .HasForeignKey("CaseTypeId")
+                    b.HasOne("InlasoftWeb.Models.Materia", "Materia")
+                        .WithMany("Servicios")
+                        .HasForeignKey("MateriaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("InlasoftWeb.Models.ClientBranch", b =>
+            modelBuilder.Entity("InlasoftWeb.Models.Sucursal", b =>
                 {
-                    b.HasOne("InlasoftWeb.Models.Client", "Client")
-                        .WithMany("ClientBranches")
-                        .HasForeignKey("ClientId")
+                    b.HasOne("InlasoftWeb.Models.Cliente", "Cliente")
+                        .WithMany("Sucursales")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -427,9 +426,9 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("InlasoftWeb.Models.Firm", "Firm")
+                    b.HasOne("InlasoftWeb.Models.Firma", "Firma")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("FirmId")
+                        .HasForeignKey("FirmaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

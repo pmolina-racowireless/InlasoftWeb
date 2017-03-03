@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace InlasoftWeb.Models
 {
-    public class Firm
+    public class Firma
     {
-        public int FirmId { get; set; }
-        public string FirmName { get; set; }
-        public string Address { get; set; }
+        public int FirmaId { get; set; }
+        public string FirmaNombre { get; set; }
+        public string Direccion { get; set; }
 
         public List<ApplicationUser> ApplicationUsers { get; set; }
     }
