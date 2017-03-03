@@ -11,7 +11,7 @@ namespace InlasoftWeb.Models
         public string ClienteNombre { get; set; }
         public string Direccion { get; set; }
 
-        public List<Sucursal> Sucursales { get; set; }
+        public virtual List<Sucursal> Sucursales { get; set; }
         public virtual List<Caso> Casos { get; set; }
 
     }

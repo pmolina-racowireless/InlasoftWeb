@@ -265,15 +265,14 @@ namespace InlasoftWeb.Migrations
                     CasoId = table.Column<int>(nullable: false),
                     Catastro = table.Column<string>(nullable: true),
                     ClienteId = table.Column<int>(nullable: false),
-                    Contraparte = table.Column<string>(nullable: true),
+                    Contraparte = table.Column<string>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     FechaInicio = table.Column<DateTime>(nullable: false),
                     FirmaId = table.Column<int>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
-                    MateriaId = table.Column<int>(nullable: false),
-                    ServicioId = table.Column<int>(nullable: true),
+                    ServicioId = table.Column<int>(nullable: false),
                     SucursalId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -296,7 +295,7 @@ namespace InlasoftWeb.Migrations
                         column: x => x.ServicioId,
                         principalTable: "Servicio",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Casos_Sucursal_SucursalId",
                         column: x => x.SucursalId,

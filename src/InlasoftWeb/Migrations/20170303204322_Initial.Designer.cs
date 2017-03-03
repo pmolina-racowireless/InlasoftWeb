@@ -8,7 +8,7 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    [Migration("20170303150608_Initial")]
+    [Migration("20170303204322_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,8 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<int>("ClienteId");
 
-                    b.Property<string>("Contraparte");
+                    b.Property<string>("Contraparte")
+                        .IsRequired();
 
                     b.Property<DateTime?>("CreatedDate");
 
@@ -43,9 +44,7 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<int>("MateriaId");
-
-                    b.Property<int?>("ServicioId");
+                    b.Property<int>("ServicioId");
 
                     b.Property<int>("SucursalId");
 
@@ -364,7 +363,8 @@ namespace InlasoftWeb.Migrations
 
                     b.HasOne("InlasoftWeb.Models.Servicio", "Servicio")
                         .WithMany()
-                        .HasForeignKey("ServicioId");
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("InlasoftWeb.Models.Sucursal", "Sucursal")
                         .WithMany()

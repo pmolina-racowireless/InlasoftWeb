@@ -15,21 +15,19 @@ namespace InlasoftWeb.Models
         public DateTime FechaInicio { get; set; }
         public string Descripcion { get; set; }
         [Required]
-        public string Contraparte { get; set; }
+        public string Contraparte { get; set; } 
         [Required]
         public int FirmaId { get; set; }
         [Required]
         public int ClienteId { get; set; }
-        [Required]
         public int SucursalId { get; set; }
         public string Catastro { get; set; }
             
-        public Servicio Servicio { get; set; }
-        public Firma Firma { get; set; }
-        public Cliente Cliente { get; set; }
-        public Sucursal Sucursal { get; set; }
+        public virtual Servicio Servicio { get; set; }
+        public virtual Firma Firma { get; set; }
+        public virtual Cliente Cliente { get; set; }
+        public virtual Sucursal Sucursal { get; set; }
 
-
-        
+ 
     }
 }

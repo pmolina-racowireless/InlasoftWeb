@@ -28,7 +28,8 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<int>("ClienteId");
 
-                    b.Property<string>("Contraparte");
+                    b.Property<string>("Contraparte")
+                        .IsRequired();
 
                     b.Property<DateTime?>("CreatedDate");
 
@@ -42,9 +43,7 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<int>("MateriaId");
-
-                    b.Property<int?>("ServicioId");
+                    b.Property<int>("ServicioId");
 
                     b.Property<int>("SucursalId");
 
@@ -363,12 +362,13 @@ namespace InlasoftWeb.Migrations
 
                     b.HasOne("InlasoftWeb.Models.Servicio", "Servicio")
                         .WithMany()
-                        .HasForeignKey("ServicioId");
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("InlasoftWeb.Models.Sucursal", "Sucursal")
                         .WithMany()
                         .HasForeignKey("SucursalId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>
