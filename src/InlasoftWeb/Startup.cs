@@ -74,6 +74,11 @@ namespace InlasoftWeb
             {
                 app.UseDeveloperExceptionPage();
                 dbContext.Database.Migrate(); //this will generate the db if it does not exist
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    serviceScope.ServiceProvider.GetService<InlasoftDbContext>().Database.Migrate();
+                    serviceScope.ServiceProvider.GetService<InlasoftDbContext>().EnsureSeedData();
+                }
 
             }
 
