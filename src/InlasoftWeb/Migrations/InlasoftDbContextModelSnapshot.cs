@@ -365,10 +365,9 @@ namespace InlasoftWeb.Migrations
                         .HasForeignKey("ServicioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("InlasoftWeb.Models.Sucursal", "Sucursal")
+                    b.HasOne("InlasoftWeb.Models.Sucursal")
                         .WithMany()
-                        .HasForeignKey("SucursalId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("SucursalId");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>

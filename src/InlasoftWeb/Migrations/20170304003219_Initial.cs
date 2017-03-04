@@ -301,7 +301,7 @@ namespace InlasoftWeb.Migrations
                         column: x => x.SucursalId,
                         principalTable: "Sucursal",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

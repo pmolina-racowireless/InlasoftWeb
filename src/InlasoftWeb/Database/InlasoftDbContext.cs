@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InlasoftWeb.Database.Configurations;
+using InlasoftWeb.Extensions;
 using InlasoftWeb.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +23,8 @@ namespace InlasoftWeb.Database
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Caso>().HasOne(s => s.Sucursal).WithMany().IsRequired(false);
+            builder.AddConfiguration(new CasoConfiguration());
+
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.

@@ -8,7 +8,7 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    [Migration("20170303204322_Initial")]
+    [Migration("20170304003219_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -366,10 +366,9 @@ namespace InlasoftWeb.Migrations
                         .HasForeignKey("ServicioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("InlasoftWeb.Models.Sucursal", "Sucursal")
+                    b.HasOne("InlasoftWeb.Models.Sucursal")
                         .WithMany()
-                        .HasForeignKey("SucursalId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SucursalId");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>

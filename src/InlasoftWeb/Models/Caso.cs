@@ -26,7 +26,6 @@ namespace InlasoftWeb.Models
         public virtual Servicio Servicio { get; set; }
         public virtual Firma Firma { get; set; }
         public virtual Cliente Cliente { get; set; }
-        public virtual Sucursal Sucursal { get; set; }
 
  
     }
