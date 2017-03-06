@@ -8,6 +8,8 @@ namespace InlasoftWeb.Models
 {
     public class Caso : BaseModel
     {
+        [Key]
+        [Required]
         public int CasoId { get; set; }
         [Required]
         public int ServicioId { get; set; }

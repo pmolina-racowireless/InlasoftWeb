@@ -10,21 +10,21 @@ namespace InlasoftWeb.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Cliente",
+                name: "Clientes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    ClienteId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClienteId = table.Column<int>(nullable: false),
                     ClienteNombre = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
+                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cliente", x => x.Id);
+                    table.PrimaryKey("PK_Clientes", x => x.ClienteId);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,20 +42,20 @@ namespace InlasoftWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Materia",
+                name: "Materias",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    MateriaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedDate = table.Column<DateTime>(nullable: true),
+                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
-                    MateriaId = table.Column<int>(nullable: false),
                     MateriaNombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Materia", x => x.Id);
+                    table.PrimaryKey("PK_Materias", x => x.MateriaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,27 +87,27 @@ namespace InlasoftWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sucursal",
+                name: "Sucursales",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    SucursalId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClienteId = table.Column<int>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
+                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
-                    SucursalId = table.Column<int>(nullable: false),
                     SucursalNombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sucursal", x => x.Id);
+                    table.PrimaryKey("PK_Sucursales", x => x.SucursalId);
                     table.ForeignKey(
-                        name: "FK_Sucursal_Cliente_ClienteId",
+                        name: "FK_Sucursales_Clientes_ClienteId",
                         column: x => x.ClienteId,
-                        principalTable: "Cliente",
-                        principalColumn: "Id",
+                        principalTable: "Clientes",
+                        principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -147,26 +147,26 @@ namespace InlasoftWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Servicio",
+                name: "Servicios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    ServicioId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CreatedDate = table.Column<DateTime>(nullable: true),
+                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
                     MateriaId = table.Column<int>(nullable: false),
-                    ServicioId = table.Column<int>(nullable: false),
                     ServicioNombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Servicio", x => x.Id);
+                    table.PrimaryKey("PK_Servicios", x => x.ServicioId);
                     table.ForeignKey(
-                        name: "FK_Servicio_Materia_MateriaId",
+                        name: "FK_Servicios_Materias_MateriaId",
                         column: x => x.MateriaId,
-                        principalTable: "Materia",
-                        principalColumn: "Id",
+                        principalTable: "Materias",
+                        principalColumn: "MateriaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -260,9 +260,8 @@ namespace InlasoftWeb.Migrations
                 name: "Casos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    CasoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CasoId = table.Column<int>(nullable: false),
                     Catastro = table.Column<string>(nullable: true),
                     ClienteId = table.Column<int>(nullable: false),
                     Contraparte = table.Column<string>(nullable: false),
@@ -270,6 +269,7 @@ namespace InlasoftWeb.Migrations
                     Descripcion = table.Column<string>(nullable: true),
                     FechaInicio = table.Column<DateTime>(nullable: false),
                     FirmaId = table.Column<int>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
                     ServicioId = table.Column<int>(nullable: false),
@@ -277,12 +277,12 @@ namespace InlasoftWeb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Casos", x => x.Id);
+                    table.PrimaryKey("PK_Casos", x => x.CasoId);
                     table.ForeignKey(
-                        name: "FK_Casos_Cliente_ClienteId",
+                        name: "FK_Casos_Clientes_ClienteId",
                         column: x => x.ClienteId,
-                        principalTable: "Cliente",
-                        principalColumn: "Id",
+                        principalTable: "Clientes",
+                        principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Casos_Firma_FirmaId",
@@ -291,16 +291,16 @@ namespace InlasoftWeb.Migrations
                         principalColumn: "FirmaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Casos_Servicio_ServicioId",
+                        name: "FK_Casos_Servicios_ServicioId",
                         column: x => x.ServicioId,
-                        principalTable: "Servicio",
-                        principalColumn: "Id",
+                        principalTable: "Servicios",
+                        principalColumn: "ServicioId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Casos_Sucursal_SucursalId",
+                        name: "FK_Casos_Sucursales_SucursalId",
                         column: x => x.SucursalId,
-                        principalTable: "Sucursal",
-                        principalColumn: "Id",
+                        principalTable: "Sucursales",
+                        principalColumn: "SucursalId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -325,13 +325,13 @@ namespace InlasoftWeb.Migrations
                 column: "SucursalId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Servicio_MateriaId",
-                table: "Servicio",
+                name: "IX_Servicios_MateriaId",
+                table: "Servicios",
                 column: "MateriaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sucursal_ClienteId",
-                table: "Sucursal",
+                name: "IX_Sucursales_ClienteId",
+                table: "Sucursales",
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
@@ -398,10 +398,10 @@ namespace InlasoftWeb.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Servicio");
+                name: "Servicios");
 
             migrationBuilder.DropTable(
-                name: "Sucursal");
+                name: "Sucursales");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -410,10 +410,10 @@ namespace InlasoftWeb.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Materia");
+                name: "Materias");
 
             migrationBuilder.DropTable(
-                name: "Cliente");
+                name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Firma");

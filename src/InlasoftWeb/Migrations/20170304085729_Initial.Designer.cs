@@ -8,7 +8,7 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    [Migration("20170304003219_Initial")]
+    [Migration("20170304085729_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,11 +19,8 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Caso", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CasoId");
+                    b.Property<int>("CasoId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Catastro");
 
@@ -40,6 +37,8 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<int>("FirmaId");
 
+                    b.Property<Guid>("Id");
+
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
@@ -48,7 +47,7 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<int>("SucursalId");
 
-                    b.HasKey("Id");
+                    b.HasKey("CasoId");
 
                     b.HasIndex("ClienteId");
 
@@ -63,11 +62,8 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Cliente", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ClienteId");
+                    b.Property<int>("ClienteId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClienteNombre");
 
@@ -75,13 +71,15 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<string>("Direccion");
 
+                    b.Property<Guid>("Id");
+
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.HasKey("Id");
+                    b.HasKey("ClienteId");
 
-                    b.ToTable("Cliente");
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Firma", b =>
@@ -100,32 +98,32 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Materia", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("MateriaId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<Guid>("Id");
 
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<int>("MateriaId");
-
                     b.Property<string>("MateriaNombre");
 
-                    b.HasKey("Id");
+                    b.HasKey("MateriaId");
 
-                    b.ToTable("Materia");
+                    b.ToTable("Materias");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("ServicioId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<Guid>("Id");
 
                     b.Property<bool>("IsActive");
 
@@ -133,22 +131,19 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<int>("MateriaId");
 
-                    b.Property<int>("ServicioId");
-
                     b.Property<string>("ServicioNombre");
 
-                    b.HasKey("Id");
+                    b.HasKey("ServicioId");
 
                     b.HasIndex("MateriaId");
 
-                    b.ToTable("Servicio");
+                    b.ToTable("Servicios");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Sucursal", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("SucursalId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("ClienteId");
 
@@ -156,19 +151,19 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<string>("Direccion");
 
+                    b.Property<Guid>("Id");
+
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<int>("SucursalId");
-
                     b.Property<string>("SucursalNombre");
 
-                    b.HasKey("Id");
+                    b.HasKey("SucursalId");
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Sucursal");
+                    b.ToTable("Sucursales");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
