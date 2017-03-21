@@ -1,0 +1,89 @@
+@model InlasoftWeb.Models.Caso
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Caso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="CasoId" />
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contraparte)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contraparte)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Catastro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Catastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModifiedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastModifiedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.ClienteId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Firma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Firma.FirmaId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Servicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Servicio.ServicioId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>
