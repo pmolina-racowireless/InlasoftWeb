@@ -65,11 +65,6 @@ namespace InlasoftWeb
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseApplicationInsightsRequestTelemetry();
-
-            app.UseApplicationInsightsExceptionTelemetry();
-
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
