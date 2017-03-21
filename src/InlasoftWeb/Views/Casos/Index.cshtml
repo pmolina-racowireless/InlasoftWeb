@@ -1,14 +1,10 @@
 @model IEnumerable<InlasoftWeb.Models.Caso>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listado de Casos";
 }
 
 <h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -26,15 +22,6 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastModifiedDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsActive)
                 </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cliente)
@@ -65,15 +52,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastModifiedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cliente.ClienteId)
