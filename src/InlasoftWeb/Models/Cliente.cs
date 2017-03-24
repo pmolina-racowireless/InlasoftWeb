@@ -8,9 +8,8 @@ namespace InlasoftWeb.Models
 {
     public class Cliente : BaseModel
     {
-        [Key]
         [Required]
-        public int ClienteId { get; set; }
+        public string ClienteId { get; set; }
         public string ClienteNombre { get; set; }
         public string Direccion { get; set; }
 

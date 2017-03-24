@@ -9,11 +9,11 @@ namespace InlasoftWeb.Models
     public class Servicio : BaseModel
     {
         [Key]
+        public string ServicioId { get; set; }
         [Required]
-        public int ServicioId { get; set; }
         public string ServicioNombre { get; set; }
 
-        public int MateriaId { get; set; }
+        public string MateriaId { get; set; }
         public Materia Materia { get; set; }
 
     }

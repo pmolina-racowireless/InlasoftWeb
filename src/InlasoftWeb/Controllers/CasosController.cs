@@ -22,12 +22,12 @@ namespace InlasoftWeb.Controllers
         // GET: Casos
         public async Task<IActionResult> Index()
         {
-            var inlasoftDbContext = _context.Casos.Include(c => c.Cliente).Include(c => c.Firma).Include(c => c.Servicio);
+            var inlasoftDbContext = _context.Casos.Include(c => c.Cliente).Include(c => c.Firma).Include(c => c.Servicio).Include(c => c.Sucursal);
             return View(await inlasoftDbContext.ToListAsync());
         }
 
         // GET: Casos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -38,6 +38,7 @@ namespace InlasoftWeb.Controllers
                 .Include(c => c.Cliente)
                 .Include(c => c.Firma)
                 .Include(c => c.Servicio)
+                .Include(c => c.Sucursal)
                 .SingleOrDefaultAsync(m => m.CasoId == id);
             if (caso == null)
             {
@@ -53,6 +54,7 @@ namespace InlasoftWeb.Controllers
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId");
             ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId");
             ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId");
+            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId");
             return View();
         }
 
@@ -61,7 +63,7 @@ namespace InlasoftWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CasoId,ServicioId,FechaInicio,Descripcion,Contraparte,FirmaId,ClienteId,SucursalId,Catastro,Id,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
+        public async Task<IActionResult> Create([Bind("CasoId,ServicioId,FechaInicio,Descripcion,Contraparte,FirmaId,ClienteId,SucursalId,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
         {
             if (ModelState.IsValid)
             {
@@ -72,11 +74,12 @@ namespace InlasoftWeb.Controllers
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", caso.ClienteId);
             ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId", caso.FirmaId);
             ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId", caso.ServicioId);
+            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId", caso.SucursalId);
             return View(caso);
         }
 
         // GET: Casos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -91,6 +94,7 @@ namespace InlasoftWeb.Controllers
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", caso.ClienteId);
             ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId", caso.FirmaId);
             ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId", caso.ServicioId);
+            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId", caso.SucursalId);
             return View(caso);
         }
 
@@ -99,7 +103,7 @@ namespace InlasoftWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CasoId,ServicioId,FechaInicio,Descripcion,Contraparte,FirmaId,ClienteId,SucursalId,Catastro,Id,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
+        public async Task<IActionResult> Edit(string id, [Bind("CasoId,ServicioId,FechaInicio,Descripcion,Contraparte,FirmaId,ClienteId,SucursalId,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
         {
             if (id != caso.CasoId)
             {
@@ -129,11 +133,12 @@ namespace InlasoftWeb.Controllers
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", caso.ClienteId);
             ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId", caso.FirmaId);
             ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId", caso.ServicioId);
+            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId", caso.SucursalId);
             return View(caso);
         }
 
         // GET: Casos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -144,6 +149,7 @@ namespace InlasoftWeb.Controllers
                 .Include(c => c.Cliente)
                 .Include(c => c.Firma)
                 .Include(c => c.Servicio)
+                .Include(c => c.Sucursal)
                 .SingleOrDefaultAsync(m => m.CasoId == id);
             if (caso == null)
             {
@@ -156,7 +162,7 @@ namespace InlasoftWeb.Controllers
         // POST: Casos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var caso = await _context.Casos.SingleOrDefaultAsync(m => m.CasoId == id);
             _context.Casos.Remove(caso);
@@ -164,7 +170,7 @@ namespace InlasoftWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        private bool CasoExists(int id)
+        private bool CasoExists(string id)
         {
             return _context.Casos.Any(e => e.CasoId == id);
         }

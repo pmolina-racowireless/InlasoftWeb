@@ -4,7 +4,8 @@
     ViewData["Title"] = "Listado de Casos";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
+
 <table class="table">
     <thead>
         <tr>
@@ -20,9 +21,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Catastro)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Id)
-                </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cliente)
             </th>
@@ -31,6 +29,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Servicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sucursal)
             </th>
             <th></th>
         </tr>
@@ -51,21 +52,19 @@
                 @Html.DisplayFor(modelItem => item.Catastro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.Cliente.ClienteNombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cliente.ClienteId)
+                @Html.DisplayFor(modelItem => item.Firma.FirmaNombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Firma.FirmaId)
+                @Html.DisplayFor(modelItem => item.Servicio.ServicioNombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Servicio.ServicioId)
+                @Html.DisplayFor(modelItem => item.Sucursal.SucursalNombre)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CasoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CasoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CasoId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.CasoId">Details</a>
             </td>
         </tr>
 }

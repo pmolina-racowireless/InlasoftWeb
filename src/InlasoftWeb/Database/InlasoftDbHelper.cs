@@ -15,57 +15,48 @@ namespace InlasoftWeb.Database
                 var materia1 =
                     context.Materias.Add(new Materia
                     {
-                        CreatedDate = DateTime.Today,
-                        Id = new Guid(),
-                        IsActive = true,
-                        LastModifiedDate = DateTime.Today,
-                        MateriaId = 0,
+                        MateriaId = "0",
                         MateriaNombre = "Materia de prueba 1"
                     }).Entity;
 
                 var materia2 =
                     context.Materias.Add(new Materia
                     {
-                        CreatedDate = DateTime.Today,
-                        Id = new Guid(),
-                        IsActive = true,
-                        LastModifiedDate = DateTime.Today,
-                        MateriaId = 1,
+                        MateriaId = "1",
                         MateriaNombre = "Materia de prueba 2"
                     }).Entity;
 
                 var servicio1 = context.Servicios.Add(new Servicio
                 {
-                    CreatedDate = DateTime.Today,
-                    Id = new Guid(),
-                    IsActive = true,
-                    LastModifiedDate = DateTime.Today,
                     Materia = materia1,
-                    ServicioId = 1,
                     ServicioNombre = "Servicio de Prueba 1"
                 }).Entity;
 
                 var servicio2 = context.Servicios.Add(new Servicio
                 {
-                    CreatedDate = DateTime.Today,
-                    Id = new Guid(),
-                    IsActive = true,
-                    LastModifiedDate = DateTime.Today,
                     Materia = materia1,
-                    ServicioId = 2,
                     ServicioNombre = "Servicio de Prueba 2"
                 }).Entity;
 
                 var servicio3 = context.Servicios.Add(new Servicio
                 {
-                    CreatedDate = DateTime.Today,
-                    Id = new Guid(),
-                    IsActive = true,
-                    LastModifiedDate = DateTime.Today,
                     Materia = materia2,
-                    ServicioId = 3,
                     ServicioNombre = "Servicio de Prueba 3"
                 }).Entity;
+
+                var cliente1 = context.Clientes.Add(new Cliente
+                {
+                    ClienteNombre = "Cliente de Prueba 1",
+                    Direccion = "Direccion de prueba"
+                }).Entity;
+
+                var sucursal1 = context.Sucursales.Add(new Sucursal
+                {
+                    Direccion = "Direccion de Sucursal de Prueba",
+                    Cliente = cliente1
+                }).Entity;
+
+                context.SaveChanges();
 
             }
         }

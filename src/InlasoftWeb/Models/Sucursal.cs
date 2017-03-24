@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.Models
 {
     public class Sucursal : BaseModel
     {
-        public int SucursalId { get; set; }
+        [Key]
+        public string SucursalId { get; set; }
+        [Required]
         public string SucursalNombre { get; set; }
         public string Direccion { get; set; }
 
-        public int ClienteId { get; set; }
+        public string ClienteId { get; set; }
         public virtual Cliente Cliente { get; set; }
 
     }

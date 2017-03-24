@@ -13,17 +13,18 @@ namespace InlasoftWeb.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
+                .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("InlasoftWeb.Models.Caso", b =>
                 {
-                    b.Property<int>("CasoId")
+                    b.Property<string>("CasoId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Catastro");
 
-                    b.Property<int>("ClienteId");
+                    b.Property<string>("ClienteId")
+                        .IsRequired();
 
                     b.Property<string>("Contraparte")
                         .IsRequired();
@@ -34,17 +35,17 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<DateTime>("FechaInicio");
 
-                    b.Property<int>("FirmaId");
-
-                    b.Property<Guid>("Id");
+                    b.Property<string>("FirmaId")
+                        .IsRequired();
 
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<int>("ServicioId");
+                    b.Property<string>("ServicioId")
+                        .IsRequired();
 
-                    b.Property<int>("SucursalId");
+                    b.Property<string>("SucursalId");
 
                     b.HasKey("CasoId");
 
@@ -61,7 +62,7 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Cliente", b =>
                 {
-                    b.Property<int>("ClienteId")
+                    b.Property<string>("ClienteId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClienteNombre");
@@ -69,8 +70,6 @@ namespace InlasoftWeb.Migrations
                     b.Property<DateTime?>("CreatedDate");
 
                     b.Property<string>("Direccion");
-
-                    b.Property<Guid>("Id");
 
                     b.Property<bool>("IsActive");
 
@@ -83,12 +82,13 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Firma", b =>
                 {
-                    b.Property<int>("FirmaId")
+                    b.Property<string>("FirmaId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Direccion");
 
-                    b.Property<string>("FirmaNombre");
+                    b.Property<string>("FirmaNombre")
+                        .IsRequired();
 
                     b.HasKey("FirmaId");
 
@@ -97,18 +97,17 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Materia", b =>
                 {
-                    b.Property<int>("MateriaId")
+                    b.Property<string>("MateriaId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime?>("CreatedDate");
-
-                    b.Property<Guid>("Id");
 
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<string>("MateriaNombre");
+                    b.Property<string>("MateriaNombre")
+                        .IsRequired();
 
                     b.HasKey("MateriaId");
 
@@ -117,20 +116,19 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>
                 {
-                    b.Property<int>("ServicioId")
+                    b.Property<string>("ServicioId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime?>("CreatedDate");
-
-                    b.Property<Guid>("Id");
 
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<int>("MateriaId");
+                    b.Property<string>("MateriaId");
 
-                    b.Property<string>("ServicioNombre");
+                    b.Property<string>("ServicioNombre")
+                        .IsRequired();
 
                     b.HasKey("ServicioId");
 
@@ -141,22 +139,21 @@ namespace InlasoftWeb.Migrations
 
             modelBuilder.Entity("InlasoftWeb.Models.Sucursal", b =>
                 {
-                    b.Property<int>("SucursalId")
+                    b.Property<string>("SucursalId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ClienteId");
+                    b.Property<string>("ClienteId");
 
                     b.Property<DateTime?>("CreatedDate");
 
                     b.Property<string>("Direccion");
 
-                    b.Property<Guid>("Id");
-
                     b.Property<bool>("IsActive");
 
                     b.Property<DateTime?>("LastModifiedDate");
 
-                    b.Property<string>("SucursalNombre");
+                    b.Property<string>("SucursalNombre")
+                        .IsRequired();
 
                     b.HasKey("SucursalId");
 
@@ -336,7 +333,9 @@ namespace InlasoftWeb.Migrations
 
                     b.Property<int>("FirmaId");
 
-                    b.HasIndex("FirmaId");
+                    b.Property<string>("FirmaId1");
+
+                    b.HasIndex("FirmaId1");
 
                     b.ToTable("ApplicationUser");
 
@@ -360,7 +359,7 @@ namespace InlasoftWeb.Migrations
                         .HasForeignKey("ServicioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("InlasoftWeb.Models.Sucursal")
+                    b.HasOne("InlasoftWeb.Models.Sucursal", "Sucursal")
                         .WithMany()
                         .HasForeignKey("SucursalId");
                 });
@@ -369,16 +368,14 @@ namespace InlasoftWeb.Migrations
                 {
                     b.HasOne("InlasoftWeb.Models.Materia", "Materia")
                         .WithMany("Servicios")
-                        .HasForeignKey("MateriaId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MateriaId");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Sucursal", b =>
                 {
                     b.HasOne("InlasoftWeb.Models.Cliente", "Cliente")
                         .WithMany("Sucursales")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ClienteId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -422,8 +419,7 @@ namespace InlasoftWeb.Migrations
                 {
                     b.HasOne("InlasoftWeb.Models.Firma", "Firma")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("FirmaId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FirmaId1");
                 });
         }
     }

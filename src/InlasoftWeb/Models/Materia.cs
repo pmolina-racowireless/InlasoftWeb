@@ -9,8 +9,8 @@ namespace InlasoftWeb.Models
     public class Materia : BaseModel
     {
         [Key]
+        public string MateriaId { get; set; }
         [Required]
-        public int MateriaId { get; set; }
         public string MateriaNombre { get; set; }
 
         public List<Servicio> Servicios { get; set; }

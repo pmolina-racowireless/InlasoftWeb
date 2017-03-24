@@ -13,12 +13,10 @@ namespace InlasoftWeb.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    ClienteId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ClienteId = table.Column<string>(nullable: false),
                     ClienteNombre = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
-                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true)
                 },
@@ -31,10 +29,9 @@ namespace InlasoftWeb.Migrations
                 name: "Firma",
                 columns: table => new
                 {
-                    FirmaId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FirmaId = table.Column<string>(nullable: false),
                     Direccion = table.Column<string>(nullable: true),
-                    FirmaNombre = table.Column<string>(nullable: true)
+                    FirmaNombre = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,13 +42,11 @@ namespace InlasoftWeb.Migrations
                 name: "Materias",
                 columns: table => new
                 {
-                    MateriaId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    MateriaId = table.Column<string>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
-                    MateriaNombre = table.Column<string>(nullable: true)
+                    MateriaNombre = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,15 +85,13 @@ namespace InlasoftWeb.Migrations
                 name: "Sucursales",
                 columns: table => new
                 {
-                    SucursalId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClienteId = table.Column<int>(nullable: false),
+                    SucursalId = table.Column<string>(nullable: false),
+                    ClienteId = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
-                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
-                    SucursalNombre = table.Column<string>(nullable: true)
+                    SucursalNombre = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,7 +101,7 @@ namespace InlasoftWeb.Migrations
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "ClienteId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,31 +126,30 @@ namespace InlasoftWeb.Migrations
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     ApplicationUserId = table.Column<int>(nullable: true)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirmaId = table.Column<int>(nullable: true)
+                    FirmaId = table.Column<int>(nullable: true),
+                    FirmaId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Firma_FirmaId",
-                        column: x => x.FirmaId,
+                        name: "FK_AspNetUsers_Firma_FirmaId1",
+                        column: x => x.FirmaId1,
                         principalTable: "Firma",
                         principalColumn: "FirmaId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Servicios",
                 columns: table => new
                 {
-                    ServicioId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ServicioId = table.Column<string>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
-                    Id = table.Column<Guid>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
-                    MateriaId = table.Column<int>(nullable: false),
-                    ServicioNombre = table.Column<string>(nullable: true)
+                    MateriaId = table.Column<string>(nullable: true),
+                    ServicioNombre = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -167,7 +159,7 @@ namespace InlasoftWeb.Migrations
                         column: x => x.MateriaId,
                         principalTable: "Materias",
                         principalColumn: "MateriaId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -260,20 +252,18 @@ namespace InlasoftWeb.Migrations
                 name: "Casos",
                 columns: table => new
                 {
-                    CasoId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CasoId = table.Column<string>(nullable: false),
                     Catastro = table.Column<string>(nullable: true),
-                    ClienteId = table.Column<int>(nullable: false),
+                    ClienteId = table.Column<string>(nullable: false),
                     Contraparte = table.Column<string>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: true),
                     Descripcion = table.Column<string>(nullable: true),
                     FechaInicio = table.Column<DateTime>(nullable: false),
-                    FirmaId = table.Column<int>(nullable: false),
-                    Id = table.Column<Guid>(nullable: false),
+                    FirmaId = table.Column<string>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
-                    ServicioId = table.Column<int>(nullable: false),
-                    SucursalId = table.Column<int>(nullable: false)
+                    ServicioId = table.Column<string>(nullable: false),
+                    SucursalId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -357,9 +347,9 @@ namespace InlasoftWeb.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_FirmaId",
+                name: "IX_AspNetUsers_FirmaId1",
                 table: "AspNetUsers",
-                column: "FirmaId");
+                column: "FirmaId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",

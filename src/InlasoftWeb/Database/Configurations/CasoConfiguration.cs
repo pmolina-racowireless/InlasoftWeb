@@ -9,10 +9,12 @@ namespace InlasoftWeb.Database.Configurations
     {
         public override void Map(EntityTypeBuilder<Caso> builder)
         {
-                builder.HasOne(typeof(Sucursal))
-                    .WithMany()
-                    .HasForeignKey("SucursalId")
-                    .OnDelete(DeleteBehavior.Restrict);
+            //builder.HasKey(p => p.CasoId);
+            //builder.Property(p => p.CasoId).ValueGeneratedOnAdd().IsRequired();
+            //builder.HasOne(typeof(Sucursal))
+            //        .WithMany()
+            //        .HasForeignKey("SucursalId")
+            //        .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

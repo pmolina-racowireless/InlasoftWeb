@@ -14,7 +14,6 @@ namespace InlasoftWeb.Models
 
     public abstract class BaseModel : IModel
     {
-        public Guid Id { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastModifiedDate { get; set; }
         public bool IsActive { get; set; }
