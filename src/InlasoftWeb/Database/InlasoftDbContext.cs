@@ -19,6 +19,7 @@ namespace InlasoftWeb.Database
         public DbSet<Materia> Materias { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Sucursal> Sucursales { get; set; }
+        public DbSet<Firma> Firma { get; set; }
 
         public InlasoftDbContext(DbContextOptions<InlasoftDbContext> options)
             : base(options)
