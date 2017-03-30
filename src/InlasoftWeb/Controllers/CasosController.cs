@@ -7,23 +7,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InlasoftWeb.Database;
 using InlasoftWeb.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace InlasoftWeb.Controllers
 {
     public class CasosController : Controller
     {
         private readonly InlasoftDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public CasosController(InlasoftDbContext context)
+        public CasosController(InlasoftDbContext context, UserManager<ApplicationUser> userManager,
+          SignInManager<ApplicationUser> signInManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: Casos
         public async Task<IActionResult> Index()
         {
-            var inlasoftDbContext = _context.Casos.Include(c => c.Cliente).Include(c => c.Firma).Include(c => c.Servicio).Include(c => c.Sucursal);
-            return View(await inlasoftDbContext.ToListAsync());
+            return View(await _context.Casos.Include(casos => casos.Servicio).ToListAsync());
         }
 
         // GET: Casos/Details/5
@@ -35,10 +41,6 @@ namespace InlasoftWeb.Controllers
             }
 
             var caso = await _context.Casos
-                .Include(c => c.Cliente)
-                .Include(c => c.Firma)
-                .Include(c => c.Servicio)
-                .Include(c => c.Sucursal)
                 .SingleOrDefaultAsync(m => m.CasoId == id);
             if (caso == null)
             {
@@ -51,10 +53,6 @@ namespace InlasoftWeb.Controllers
         // GET: Casos/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId");
-            ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId");
-            ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId");
-            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId");
             return View();
         }
 
@@ -63,7 +61,7 @@ namespace InlasoftWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CasoId,ServicioId,FechaInicio,Descripcion,Contraparte,FirmaId,ClienteId,SucursalId,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
+        public async Task<IActionResult> Create([Bind("CasoId,FechaInicio,Descripcion,Contraparte,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
         {
             if (ModelState.IsValid)
             {
@@ -71,10 +69,6 @@ namespace InlasoftWeb.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", caso.ClienteId);
-            ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId", caso.FirmaId);
-            ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId", caso.ServicioId);
-            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId", caso.SucursalId);
             return View(caso);
         }
 
@@ -91,10 +85,6 @@ namespace InlasoftWeb.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", caso.ClienteId);
-            ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId", caso.FirmaId);
-            ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId", caso.ServicioId);
-            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId", caso.SucursalId);
             return View(caso);
         }
 
@@ -103,7 +93,7 @@ namespace InlasoftWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("CasoId,ServicioId,FechaInicio,Descripcion,Contraparte,FirmaId,ClienteId,SucursalId,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
+        public async Task<IActionResult> Edit(string id, [Bind("CasoId,FechaInicio,Descripcion,Contraparte,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
         {
             if (id != caso.CasoId)
             {
@@ -130,10 +120,6 @@ namespace InlasoftWeb.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", caso.ClienteId);
-            ViewData["FirmaId"] = new SelectList(_context.Set<Firma>(), "FirmaId", "FirmaId", caso.FirmaId);
-            ViewData["ServicioId"] = new SelectList(_context.Servicios, "ServicioId", "ServicioId", caso.ServicioId);
-            ViewData["SucursalId"] = new SelectList(_context.Sucursales, "SucursalId", "SucursalId", caso.SucursalId);
             return View(caso);
         }
 
@@ -146,10 +132,6 @@ namespace InlasoftWeb.Controllers
             }
 
             var caso = await _context.Casos
-                .Include(c => c.Cliente)
-                .Include(c => c.Firma)
-                .Include(c => c.Servicio)
-                .Include(c => c.Sucursal)
                 .SingleOrDefaultAsync(m => m.CasoId == id);
             if (caso == null)
             {

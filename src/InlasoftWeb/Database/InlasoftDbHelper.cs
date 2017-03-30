@@ -23,6 +23,8 @@ namespace InlasoftWeb.Database
                         MateriaId = "1",
                         MateriaNombre = "Materia de prueba 2"
                     }).Entity;
+
+                context.SaveChanges();
             }
 
             if (!context.Servicios.Any())
@@ -44,6 +46,7 @@ namespace InlasoftWeb.Database
                     Materia = context.Materias.Where(m => m.MateriaId == "2").FirstOrDefault(),
                     ServicioNombre = "Servicio de Prueba 3"
                 }).Entity;
+                context.SaveChanges();
             }
 
             if (!context.Clientes.Any())
@@ -53,6 +56,7 @@ namespace InlasoftWeb.Database
                     ClienteNombre = "Cliente de Prueba 1",
                     Direccion = "Direccion de prueba"
                 }).Entity;
+                context.SaveChanges();
             }
 
             if (!context.Sucursales.Any())
@@ -63,6 +67,7 @@ namespace InlasoftWeb.Database
                     SucursalNombre = "Sucursal de Prueba 1",
                     Cliente = context.Clientes.FirstOrDefault()
                 }).Entity;
+                context.SaveChanges();
             }
 
             if (!context.Firma.Any())
@@ -71,6 +76,7 @@ namespace InlasoftWeb.Database
                 {
                     FirmaNombre = "Firma de Prueba 1"
                 });
+                context.SaveChanges();
             }
 
             if (!context.Casos.Any())
@@ -83,13 +89,11 @@ namespace InlasoftWeb.Database
                     Descripcion = "Caso de Prueba",
                     Firma = context.Firma.FirstOrDefault(),
                     Servicio = context.Servicios.FirstOrDefault(),
-                    Sucursal = context.Sucursales.FirstOrDefault()
+                    Sucursal = context.Sucursales.FirstOrDefault(),
                     
                 }).Entity;
-
+                context.SaveChanges();
             }
-
-            context.SaveChanges();
         }
     }
 }

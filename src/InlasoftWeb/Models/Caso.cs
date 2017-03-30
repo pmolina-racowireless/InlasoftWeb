@@ -11,23 +11,17 @@ namespace InlasoftWeb.Models
         [Key]
         public string CasoId { get; set; }
         [Required]
-        public string ServicioId { get; set; }
-        [Required]
         public DateTime FechaInicio { get; set; }
         public string Descripcion { get; set; }
         [Required]
-        public string Contraparte { get; set; } 
-        [Required]
-        public string FirmaId { get; set; }
-        [Required]
-        public string ClienteId { get; set; }
-        public string SucursalId { get; set; }
+        public string Contraparte { get; set; }
         public string Catastro { get; set; }
-            
+        [Required]
         public virtual Servicio Servicio { get; set; }
+        [Required]
         public virtual Firma Firma { get; set; }
+        [Required]
         public virtual Cliente Cliente { get; set; }
         public virtual Sucursal Sucursal { get; set; }
-
     }
 }

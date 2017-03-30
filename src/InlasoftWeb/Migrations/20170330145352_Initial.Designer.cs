@@ -8,7 +8,7 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    [Migration("20170323152738_Initial")]
+    [Migration("20170330145352_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,10 +1,10 @@
 @model IEnumerable<InlasoftWeb.Models.Caso>
 
 @{
-    ViewData["Title"] = "Listado de Casos";
+    ViewData["Title"] = "Index";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Listado de Casos</h2>
 
 <table class="table">
     <thead>
@@ -16,23 +16,20 @@
                     @Html.DisplayNameFor(model => model.Descripcion)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Servicio.ServicioNombre)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Contraparte)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Catastro)
                 </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Firma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Servicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sucursal)
-            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastModifiedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
             <th></th>
         </tr>
     </thead>
@@ -46,22 +43,19 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Servicio.ServicioNombre)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Contraparte)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Catastro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cliente.ClienteNombre)
+                @Html.DisplayFor(modelItem => item.LastModifiedDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Firma.FirmaNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servicio.ServicioNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sucursal.SucursalNombre)
+                @Html.DisplayFor(modelItem => item.IsActive)
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.CasoId">Details</a>

@@ -12,12 +12,6 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="ServicioId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="ServicioId" class ="form-control" asp-items="ViewBag.ServicioId"></select>
-            </div>
-        </div>
-        <div class="form-group">
             <label asp-for="FechaInicio" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="FechaInicio" class="form-control" />
@@ -36,24 +30,6 @@
             <div class="col-md-10">
                 <input asp-for="Contraparte" class="form-control" />
                 <span asp-validation-for="Contraparte" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FirmaId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="FirmaId" class ="form-control" asp-items="ViewBag.FirmaId"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ClienteId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="ClienteId" class ="form-control" asp-items="ViewBag.ClienteId"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="SucursalId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="SucursalId" class ="form-control" asp-items="ViewBag.SucursalId"></select>
             </div>
         </div>
         <div class="form-group">
