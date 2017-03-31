@@ -4,3 +4,5 @@ http://bootswatch.com/
 mvc sorting:
 
 https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page
+
+getcasos by firmaid: add query object
