@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InlasoftWeb.Database.Configurations;
+﻿using InlasoftWeb.Database.Configurations;
 using InlasoftWeb.Extensions;
 using InlasoftWeb.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
