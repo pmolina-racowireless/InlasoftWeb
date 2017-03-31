@@ -52,5 +52,15 @@ namespace InlasoftWeb.Controllers
             
             return Redirect("~/");
         }
+
+        //
+        // POST: /Account/Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(Home.Index), "Home");
+        }
     }
 }

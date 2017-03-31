@@ -29,10 +29,34 @@
             @Html.DisplayFor(model => model.Contraparte)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Servicio.ServicioNombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Servicio.ServicioNombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Servicio.Materia.MateriaNombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Servicio.Materia.MateriaNombre)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Catastro)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Catastro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.ClienteNombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.ClienteNombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sucursal.SucursalNombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sucursal.SucursalNombre)
         </dd>
     </dl>
 </div>

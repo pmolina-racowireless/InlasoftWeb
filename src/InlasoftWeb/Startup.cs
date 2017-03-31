@@ -38,14 +38,6 @@ namespace InlasoftWeb
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            //services.AddDbContext<IdentityDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-            //    optionBuilder => optionBuilder.MigrationsAssembly("InlasoftWeb")));
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
-
             services.AddDbContext<InlasoftDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 optionBuilder => optionBuilder.MigrationsAssembly("InlasoftWeb")));

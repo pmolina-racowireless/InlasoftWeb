@@ -1,2 +1,6 @@
 http://www.blinkingcaret.com/2016/11/30/asp-net-identity-core-from-scratch/
 http://bootswatch.com/
+
+mvc sorting:
+
+https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/sort-filter-page

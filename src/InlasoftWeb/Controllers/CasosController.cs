@@ -44,8 +44,13 @@ namespace InlasoftWeb.Controllers
                 return NotFound();
             }
 
+            var userFirmaId = User.Identity.GetFirmaId();
             var caso = await _context.Casos
-                .SingleOrDefaultAsync(m => m.CasoId == id);
+                .Include(casos => casos.Servicio)
+                    .ThenInclude(servicio => servicio.Materia)
+                .Include(casos => casos.Cliente)
+                .Include(casos => casos.Sucursal)
+                .SingleOrDefaultAsync(m => m.CasoId == id && m.Firma.FirmaId == userFirmaId);
             if (caso == null)
             {
                 return NotFound();
