@@ -27,17 +27,13 @@ namespace InlasoftWeb.Controllers
         // GET: Casos
         public async Task<IActionResult> Index(string sortOrder)
         {
+            var userFirmaId = User.Identity.GetFirmaId();
+            var caso = GetCasosByFirmaId(userFirmaId);
+
+            #region Table Sorting
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-
-            var userFirmaId = User.Identity.GetFirmaId();
-            var caso = _context.Casos
-                .Include(casos => casos.Servicio)
-                    .ThenInclude(servicio => servicio.Materia)
-                .Include(casos => casos.Cliente)
-                .Include(casos => casos.Sucursal)
-                .Where(casos => casos.Firma.FirmaId == userFirmaId);
-
+            ViewData["ClienteSortParm"] = sortOrder == "cliente" ? "cliente_desc" : "cliente;";
             switch (sortOrder)
             {
                 case "name_desc":
@@ -49,9 +45,17 @@ namespace InlasoftWeb.Controllers
                 case "date_desc":
                     caso = caso.OrderByDescending(s => s.FechaInicio);
                     break;
+                case "cliente":
+                    caso = caso.OrderBy(s => s.Cliente.ClienteNombre);
+                    break;
+                case "cliente_desc":
+                    caso = caso.OrderByDescending(c => c.Cliente.ClienteNombre);
+                    break;
                 default:
                     caso = caso.OrderBy(s => s.Descripcion);
                     break;
+                    #endregion
+
             }
             return View(await caso.AsNoTracking().ToListAsync());
         }
@@ -65,18 +69,24 @@ namespace InlasoftWeb.Controllers
             }
 
             var userFirmaId = User.Identity.GetFirmaId();
-            var caso = await _context.Casos
-                .Include(casos => casos.Servicio)
-                    .ThenInclude(servicio => servicio.Materia)
-                .Include(casos => casos.Cliente)
-                .Include(casos => casos.Sucursal)
-                .SingleOrDefaultAsync(m => m.CasoId == id && m.Firma.FirmaId == userFirmaId);
+            var caso = GetCasosByFirmaId(userFirmaId).Where(m => m.CasoId == id);
             if (caso == null)
             {
                 return NotFound();
             }
 
-            return View(caso);
+            return View(await caso.SingleOrDefaultAsync());
+        }
+
+        private IQueryable<Caso> GetCasosByFirmaId(string firmaId)
+        {
+            var caso = _context.Casos
+                .Include(casos => casos.Servicio)
+                    .ThenInclude(servicio => servicio.Materia)
+                .Include(casos => casos.Cliente)
+                .Include(casos => casos.Sucursal)
+                .Where(casos => casos.Firma.FirmaId == firmaId);
+            return caso;
         }
 
     }

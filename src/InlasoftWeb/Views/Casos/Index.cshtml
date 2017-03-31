@@ -13,16 +13,16 @@
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.FechaInicio)</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Descripcion)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Descripcion)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ClienteSortParm"]">@Html.DisplayNameFor(model => model.Cliente.ClienteNombre)</a>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Servicio.Materia.MateriaNombre)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Servicio.ServicioNombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cliente.ClienteNombre)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Sucursal.SucursalNombre)
@@ -46,13 +46,13 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Cliente.ClienteNombre)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Servicio.Materia.MateriaNombre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Servicio.ServicioNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente.ClienteNombre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Sucursal.SucursalNombre)
