@@ -53,7 +53,7 @@ namespace InlasoftWeb.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid login");
                 return View();
             }
-
+            
             return Redirect("~/");
         }
     }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InlasoftWeb.Database;
 using InlasoftWeb.Models;
+using InlasoftWeb.Extensions;
 using Microsoft.AspNetCore.Identity;
 
 namespace InlasoftWeb.Controllers
@@ -25,11 +26,13 @@ namespace InlasoftWeb.Controllers
         // GET: Casos
         public async Task<IActionResult> Index()
         {
+            var userFirmaId = User.Identity.GetFirmaId();
             return View(await _context.Casos
                 .Include(casos => casos.Servicio)
                     .ThenInclude(servicio => servicio.Materia)
                 .Include(casos => casos.Cliente)
                 .Include(casos => casos.Sucursal)
+                .Where(casos => casos.Firma.FirmaId == userFirmaId)
                 .ToListAsync());
         }
 

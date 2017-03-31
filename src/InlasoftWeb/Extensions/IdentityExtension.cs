@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
-
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace InlasoftWeb.Extensions
 {
@@ -31,10 +32,19 @@ namespace InlasoftWeb.Extensions
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(user, "Admin");
+                    await userManager.AddClaimAsync(user, new Claim("FirmaId", user.Firma.FirmaId));
                 }
 
             }
 
         }
+
+        public static string GetFirmaId(this IIdentity identity)
+        {
+            var claim = ((ClaimsIdentity)identity).FindFirst("FirmaId");
+            // Test for null to avoid issues during local testing
+            return (claim != null) ? claim.Value : string.Empty;
+        }
     }
+
 }
