@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InlasoftWeb.Database;
 using InlasoftWeb.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace InlasoftWeb.Controllers
@@ -29,7 +25,12 @@ namespace InlasoftWeb.Controllers
         // GET: Casos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Casos.Include(casos => casos.Servicio).ToListAsync());
+            return View(await _context.Casos
+                .Include(casos => casos.Servicio)
+                    .ThenInclude(servicio => servicio.Materia)
+                .Include(casos => casos.Cliente)
+                .Include(casos => casos.Sucursal)
+                .ToListAsync());
         }
 
         // GET: Casos/Details/5

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InlasoftWeb.Database;
+﻿using InlasoftWeb.Database;
 using InlasoftWeb.Models;
+using InlasoftWeb.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -74,12 +71,13 @@ namespace InlasoftWeb
                     serviceScope.ServiceProvider.GetService<InlasoftDbContext>().Database.Migrate();
                     serviceScope.ServiceProvider.GetService<InlasoftDbContext>().EnsureSeedData();
                 }
-
+                app.CreateDevUsersAndRoles();
             }
 
             app.UseIdentity();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
+
     }
 }

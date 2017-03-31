@@ -16,19 +16,22 @@
                     @Html.DisplayNameFor(model => model.Descripcion)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Servicio.Materia.MateriaNombre)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Servicio.ServicioNombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente.ClienteNombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sucursal.SucursalNombre)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Contraparte)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Catastro)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LastModifiedDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsActive)
                 </th>
             <th></th>
         </tr>
@@ -43,7 +46,16 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Servicio.Materia.MateriaNombre)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Servicio.ServicioNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.ClienteNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sucursal.SucursalNombre)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contraparte)
@@ -52,13 +64,7 @@
                 @Html.DisplayFor(modelItem => item.Catastro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastModifiedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.CasoId">Details</a>
+                <a asp-action="Details" asp-route-id="@item.CasoId">Detalles</a>
             </td>
         </tr>
 }

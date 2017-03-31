@@ -11,6 +11,7 @@ namespace InlasoftWeb.Models
         [Key]
         public string MateriaId { get; set; }
         [Required]
+        [Display(Name = "Materia")]
         public string MateriaNombre { get; set; }
 
         public List<Servicio> Servicios { get; set; }

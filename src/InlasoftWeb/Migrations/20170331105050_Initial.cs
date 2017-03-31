@@ -126,15 +126,14 @@ namespace InlasoftWeb.Migrations
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     ApplicationUserId = table.Column<int>(nullable: true)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FirmaId = table.Column<int>(nullable: true),
-                    FirmaId1 = table.Column<string>(nullable: true)
+                    FirmaId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Firma_FirmaId1",
-                        column: x => x.FirmaId1,
+                        name: "FK_AspNetUsers_Firma_FirmaId",
+                        column: x => x.FirmaId,
                         principalTable: "Firma",
                         principalColumn: "FirmaId",
                         onDelete: ReferentialAction.Restrict);
@@ -347,9 +346,9 @@ namespace InlasoftWeb.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_FirmaId1",
+                name: "IX_AspNetUsers_FirmaId",
                 table: "AspNetUsers",
-                column: "FirmaId1");
+                column: "FirmaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",

@@ -11,6 +11,7 @@ namespace InlasoftWeb.Models
         [Key]
         public string SucursalId { get; set; }
         [Required]
+        [Display(Name ="Sucursal")]
         public string SucursalNombre { get; set; }
         public string Direccion { get; set; }
 

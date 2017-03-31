@@ -8,7 +8,7 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    [Migration("20170330145352_Initial")]
+    [Migration("20170331105050_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -332,11 +332,9 @@ namespace InlasoftWeb.Migrations
                     b.Property<int>("ApplicationUserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("FirmaId");
+                    b.Property<string>("FirmaId");
 
-                    b.Property<string>("FirmaId1");
-
-                    b.HasIndex("FirmaId1");
+                    b.HasIndex("FirmaId");
 
                     b.ToTable("ApplicationUser");
 
@@ -420,7 +418,7 @@ namespace InlasoftWeb.Migrations
                 {
                     b.HasOne("InlasoftWeb.Models.Firma", "Firma")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("FirmaId1");
+                        .HasForeignKey("FirmaId");
                 });
         }
     }

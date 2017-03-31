@@ -331,11 +331,9 @@ namespace InlasoftWeb.Migrations
                     b.Property<int>("ApplicationUserId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("FirmaId");
+                    b.Property<string>("FirmaId");
 
-                    b.Property<string>("FirmaId1");
-
-                    b.HasIndex("FirmaId1");
+                    b.HasIndex("FirmaId");
 
                     b.ToTable("ApplicationUser");
 
@@ -419,7 +417,7 @@ namespace InlasoftWeb.Migrations
                 {
                     b.HasOne("InlasoftWeb.Models.Firma", "Firma")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("FirmaId1");
+                        .HasForeignKey("FirmaId");
                 });
         }
     }

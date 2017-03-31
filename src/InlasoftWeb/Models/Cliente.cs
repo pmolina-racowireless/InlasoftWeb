@@ -10,6 +10,7 @@ namespace InlasoftWeb.Models
     {
         [Required]
         public string ClienteId { get; set; }
+        [Display(Name ="Cliente")]
         public string ClienteNombre { get; set; }
         public string Direccion { get; set; }
 
