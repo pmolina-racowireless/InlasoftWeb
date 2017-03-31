@@ -92,6 +92,18 @@ namespace InlasoftWeb.Database
                     Sucursal = context.Sucursales.FirstOrDefault(),
                     
                 }).Entity;
+
+                var caso2 = context.Casos.Add(new Caso
+                {
+                    Cliente = context.Clientes.FirstOrDefault(),
+                    Catastro = "Catastro 2",
+                    Contraparte = "Pedro Perez",
+                    Descripcion = "Caso de Prueba 2",
+                    Firma = context.Firma.FirstOrDefault(),
+                    Servicio = context.Servicios.LastOrDefault(),
+                    Sucursal = context.Sucursales.LastOrDefault(),
+
+                }).Entity;
                 context.SaveChanges();
             }
         }

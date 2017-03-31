@@ -6,6 +6,7 @@ using InlasoftWeb.Database;
 using InlasoftWeb.Models;
 using InlasoftWeb.Extensions;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace InlasoftWeb.Controllers
 {
@@ -24,16 +25,35 @@ namespace InlasoftWeb.Controllers
         }
 
         // GET: Casos
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
             var userFirmaId = User.Identity.GetFirmaId();
-            return View(await _context.Casos
+            var caso = _context.Casos
                 .Include(casos => casos.Servicio)
                     .ThenInclude(servicio => servicio.Materia)
                 .Include(casos => casos.Cliente)
                 .Include(casos => casos.Sucursal)
-                .Where(casos => casos.Firma.FirmaId == userFirmaId)
-                .ToListAsync());
+                .Where(casos => casos.Firma.FirmaId == userFirmaId);
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    caso = caso.OrderByDescending(c => c.Descripcion);
+                    break;
+                case "Date":
+                    caso = caso.OrderBy(s => s.FechaInicio);
+                    break;
+                case "date_desc":
+                    caso = caso.OrderByDescending(s => s.FechaInicio);
+                    break;
+                default:
+                    caso = caso.OrderBy(s => s.Descripcion);
+                    break;
+            }
+            return View(await caso.AsNoTracking().ToListAsync());
         }
 
         // GET: Casos/Details/5
@@ -59,111 +79,5 @@ namespace InlasoftWeb.Controllers
             return View(caso);
         }
 
-        // GET: Casos/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Casos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CasoId,FechaInicio,Descripcion,Contraparte,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(caso);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(caso);
-        }
-
-        // GET: Casos/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var caso = await _context.Casos.SingleOrDefaultAsync(m => m.CasoId == id);
-            if (caso == null)
-            {
-                return NotFound();
-            }
-            return View(caso);
-        }
-
-        // POST: Casos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("CasoId,FechaInicio,Descripcion,Contraparte,Catastro,CreatedDate,LastModifiedDate,IsActive")] Caso caso)
-        {
-            if (id != caso.CasoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(caso);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CasoExists(caso.CasoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction("Index");
-            }
-            return View(caso);
-        }
-
-        // GET: Casos/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var caso = await _context.Casos
-                .SingleOrDefaultAsync(m => m.CasoId == id);
-            if (caso == null)
-            {
-                return NotFound();
-            }
-
-            return View(caso);
-        }
-
-        // POST: Casos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var caso = await _context.Casos.SingleOrDefaultAsync(m => m.CasoId == id);
-            _context.Casos.Remove(caso);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        private bool CasoExists(string id)
-        {
-            return _context.Casos.Any(e => e.CasoId == id);
-        }
     }
 }

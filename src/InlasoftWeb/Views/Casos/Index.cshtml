@@ -10,7 +10,7 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FechaInicio)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.FechaInicio)</a>
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Descripcion)
