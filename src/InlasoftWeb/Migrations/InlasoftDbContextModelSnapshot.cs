@@ -328,9 +328,6 @@ namespace InlasoftWeb.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser");
 
-                    b.Property<int>("ApplicationUserId")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<string>("FirmaId");
 
                     b.HasIndex("FirmaId");

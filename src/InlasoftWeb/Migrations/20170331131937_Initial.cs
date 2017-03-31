@@ -124,8 +124,6 @@ namespace InlasoftWeb.Migrations
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    ApplicationUserId = table.Column<int>(nullable: true)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirmaId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

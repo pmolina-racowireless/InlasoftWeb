@@ -8,7 +8,7 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    [Migration("20170331105050_Initial")]
+    [Migration("20170331131937_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -328,9 +328,6 @@ namespace InlasoftWeb.Migrations
             modelBuilder.Entity("InlasoftWeb.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser");
-
-                    b.Property<int>("ApplicationUserId")
-                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("FirmaId");
 

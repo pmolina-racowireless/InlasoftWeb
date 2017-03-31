@@ -6,19 +6,16 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <p>User @User.Identity.Name is signed in. <a href="/Account/Logout">Logout</a> </p>
+    <p>Está conectado como @User.Identity.Name. <a href="/Account/Logout">Finalizar Sesión</a> </p>
 
 }
 else
 {
-    <p>No user is signed in.</p>
+    <p>No hay usuario conectado</p>
 }
 <div>
-    <a href="/Account/Login">Login</a>
+    <a href="/Account/Login">Iniciar Sesión</a>
 </div>
 <div>
-    <a href="/Account/Register">Register</a>
-</div>
-<div>
-    <a href="/Account/ForgotPassword">Forgot Password</a>
+    <a href="/Account/ForgotPassword">Olvidé mi Contraseña</a>
 </div>    
