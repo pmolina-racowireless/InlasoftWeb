@@ -1,4 +1,5 @@
 ﻿using InlasoftWeb.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -38,7 +39,7 @@ namespace InlasoftWeb.ViewModels
                 Firma = caso.Firma.FirmaNombre,
                 Cliente = caso.Cliente.ClienteNombre,
                 Sucursal = caso.Sucursal.SucursalNombre
-            };
+        };
         }
     }
 }

@@ -26,7 +26,7 @@ namespace InlasoftWeb.Controllers
         }
 
         // GET: Casos
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             var userFirmaId = User.Identity.GetFirmaId();
             var caso = GetCasosByFirmaId(userFirmaId);
@@ -55,9 +55,20 @@ namespace InlasoftWeb.Controllers
                 default:
                     caso = caso.OrderBy(s => s.Descripcion);
                     break;
-                    #endregion
+            }
+            #endregion
+
+            #region Table Filtering
+            ViewData["CurrentFilter"] = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                caso = caso.Where(c => c.Descripcion.Contains(searchString));
 
             }
+
+            #endregion
+
             return View(await caso.AsNoTracking().ToListAsync());
         }
 
@@ -75,7 +86,6 @@ namespace InlasoftWeb.Controllers
             {
                 return NotFound();
             }
-
             return View(await caso.AsNoTracking().SingleOrDefaultAsync());
         }
 

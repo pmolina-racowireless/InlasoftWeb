@@ -5,7 +5,14 @@
 }
 
 <h2>Listado de Casos</h2>
-
+<form asp-action="Index" method="get">
+    <div class="col-md-12">
+        <span>Buscar :
+            <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Buscar" class="btn btn-default" />
+        </span>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
