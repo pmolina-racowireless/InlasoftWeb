@@ -1,4 +1,4 @@
-@model IEnumerable<InlasoftWeb.Models.Caso>
+@model IEnumerable<InlasoftWeb.ViewModels.CasoViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,16 +16,16 @@
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Descripcion)</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ClienteSortParm"]">@Html.DisplayNameFor(model => model.Cliente.ClienteNombre)</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ClienteSortParm"]">@Html.DisplayNameFor(model => model.Cliente)</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Servicio.Materia.MateriaNombre)
+                    @Html.DisplayNameFor(model => model.Materia)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Servicio.ServicioNombre)
+                    @Html.DisplayNameFor(model => model.Servicio)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sucursal.SucursalNombre)
+                    @Html.DisplayNameFor(model => model.Sucursal)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Contraparte)
@@ -46,16 +46,16 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cliente.ClienteNombre)
+                @Html.DisplayFor(modelItem => item.Cliente)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Servicio.Materia.MateriaNombre)
+                @Html.DisplayFor(modelItem => item.Materia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Servicio.ServicioNombre)
+                @Html.DisplayFor(modelItem => item.Servicio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sucursal.SucursalNombre)
+                @Html.DisplayFor(modelItem => item.Sucursal)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contraparte)

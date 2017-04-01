@@ -7,6 +7,7 @@ using InlasoftWeb.Models;
 using InlasoftWeb.Extensions;
 using Microsoft.AspNetCore.Identity;
 using System;
+using InlasoftWeb.ViewModels;
 
 namespace InlasoftWeb.Controllers
 {
@@ -46,10 +47,10 @@ namespace InlasoftWeb.Controllers
                     caso = caso.OrderByDescending(s => s.FechaInicio);
                     break;
                 case "cliente":
-                    caso = caso.OrderBy(s => s.Cliente.ClienteNombre);
+                    caso = caso.OrderBy(s => s.Cliente);
                     break;
                 case "cliente_desc":
-                    caso = caso.OrderByDescending(c => c.Cliente.ClienteNombre);
+                    caso = caso.OrderByDescending(c => c.Cliente);
                     break;
                 default:
                     caso = caso.OrderBy(s => s.Descripcion);
@@ -69,23 +70,38 @@ namespace InlasoftWeb.Controllers
             }
 
             var userFirmaId = User.Identity.GetFirmaId();
-            var caso = GetCasosByFirmaId(userFirmaId).Where(m => m.CasoId == id);
+            var caso = GetCasosByFirmaIdAndCasoId(userFirmaId, id);
             if (caso == null)
             {
                 return NotFound();
             }
 
-            return View(await caso.SingleOrDefaultAsync());
+            return View(await caso.AsNoTracking().SingleOrDefaultAsync());
         }
 
-        private IQueryable<Caso> GetCasosByFirmaId(string firmaId)
+        private IQueryable<CasoViewModel> GetCasosByFirmaId(string firmaId)
         {
             var caso = _context.Casos
-                .Include(casos => casos.Servicio)
-                    .ThenInclude(servicio => servicio.Materia)
-                .Include(casos => casos.Cliente)
-                .Include(casos => casos.Sucursal)
-                .Where(casos => casos.Firma.FirmaId == firmaId);
+                .Include(c => c.Servicio)
+                    .ThenInclude(s => s.Materia)
+                .Include(c => c.Cliente)
+                .Include(c => c.Sucursal)
+                .Include(c => c.Firma)
+                .Where(c => c.Firma.FirmaId == firmaId)
+                .Select(x => (CasoViewModel)x);
+            return caso;
+        }
+
+        private IQueryable<CasoViewModel> GetCasosByFirmaIdAndCasoId(string firmaId, string casoId)
+        {
+            var caso = _context.Casos
+                .Include(c => c.Servicio)
+                    .ThenInclude(s => s.Materia)
+                .Include(c => c.Cliente)
+                .Include(c => c.Sucursal)
+                .Include(c => c.Firma)
+                .Where(c => c.Firma.FirmaId == firmaId && c.CasoId == casoId)
+                .Select(x => (CasoViewModel)x);
             return caso;
         }
 

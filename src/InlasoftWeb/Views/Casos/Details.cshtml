@@ -1,4 +1,4 @@
-@model InlasoftWeb.Models.Caso
+@model InlasoftWeb.ViewModels.CasoViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -29,16 +29,16 @@
             @Html.DisplayFor(model => model.Contraparte)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Servicio.ServicioNombre)
+            @Html.DisplayNameFor(model => model.Servicio)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Servicio.ServicioNombre)
+            @Html.DisplayFor(model => model.Servicio)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Servicio.Materia.MateriaNombre)
+            @Html.DisplayNameFor(model => model.Materia)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Servicio.Materia.MateriaNombre)
+            @Html.DisplayFor(model => model.Materia)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Catastro)
@@ -47,16 +47,16 @@
             @Html.DisplayFor(model => model.Catastro)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Cliente.ClienteNombre)
+            @Html.DisplayNameFor(model => model.Cliente)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Cliente.ClienteNombre)
+            @Html.DisplayFor(model => model.Cliente)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Sucursal.SucursalNombre)
+            @Html.DisplayNameFor(model => model.Sucursal)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Sucursal.SucursalNombre)
+            @Html.DisplayFor(model => model.Sucursal)
         </dd>
     </dl>
 </div>
