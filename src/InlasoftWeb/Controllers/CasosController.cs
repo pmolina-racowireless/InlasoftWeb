@@ -33,27 +33,20 @@ namespace InlasoftWeb.Controllers
 
             #region Table Sorting
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewData["ClienteSortParm"] = sortOrder == "cliente" ? "cliente_desc" : "cliente;";
+            ViewData["IdSortParm"] = sortOrder == "id" ? "id_desc" : "id";
             switch (sortOrder)
             {
                 case "name_desc":
                     caso = caso.OrderByDescending(c => c.Descripcion);
                     break;
-                case "Date":
-                    caso = caso.OrderBy(s => s.FechaInicio);
+                case "id":
+                    caso = caso.OrderBy(c => c.CasoId);
                     break;
-                case "date_desc":
-                    caso = caso.OrderByDescending(s => s.FechaInicio);
-                    break;
-                case "cliente":
-                    caso = caso.OrderBy(s => s.Cliente);
-                    break;
-                case "cliente_desc":
-                    caso = caso.OrderByDescending(c => c.Cliente);
+                case "id_desc":
+                    caso = caso.OrderByDescending(c => c.CasoId);
                     break;
                 default:
-                    caso = caso.OrderBy(s => s.Descripcion);
+                    caso = caso.OrderBy(c => c.Descripcion);
                     break;
             }
             #endregion

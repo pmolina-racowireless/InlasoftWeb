@@ -50,7 +50,7 @@ namespace InlasoftWeb.Controllers
                 return View();
             }
             
-            return Redirect("~/");
+            return Redirect("~/Casos");
         }
 
         //
