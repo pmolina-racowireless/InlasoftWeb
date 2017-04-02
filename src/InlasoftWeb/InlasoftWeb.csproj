@@ -30,7 +30,7 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
@@ -40,11 +40,18 @@
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Core" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" />
+    <PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="1.4.0" />
+    <PackageReference Include="NonFactors.Grid.Mvc6" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Content\MvcGrid\mvc-grid.css" />
+    <None Include="wwwroot\Scripts\MvcGrid\mvc-grid.js" />
   </ItemGroup>
 
 </Project>

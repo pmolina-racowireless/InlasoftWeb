@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <h2>Listado de Casos</h2>
 <form asp-action="Index" method="get">
     <div class="col-md-12">
@@ -13,55 +12,23 @@
         </span>
     </div>
 </form>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">@Html.DisplayNameFor(model => model.CasoId)</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Descripcion)</a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Materia)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Servicio)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Sucursal)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Contraparte)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CasoId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Materia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sucursal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contraparte)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.CasoId" class="glyphicon glyphicon-folder-open"></a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.CasoId).Titled("Codigo").Sortable(true);
+        columns.Add(model => model.Descripcion).Titled("Descripcion");
+
+        columns.Add(model => model.Materia).Titled("Materia");
+        columns.Add(model => model.Servicio).Titled("Servicio");
+        columns.Add(model => model.Sucursal).Titled("Sucursal");
+        columns.Add(model => model.Contraparte).Titled("Contraparte");
+        columns.Add(Model => Html.ActionLink(string.Empty, "Details", "Casos", new { id = Model.CasoId }, new { @class = "glyphicon glyphicon-folder-open" }));
+
+    })
+    .Sortable()
+    .Pageable(pager => {
+        pager.RowsPerPage = 25;
+        pager.PagesToDisplay = 5;
+    })
+)
