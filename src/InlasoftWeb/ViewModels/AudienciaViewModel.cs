@@ -1,14 +1,15 @@
 ﻿using InlasoftWeb.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.ViewModels
 {
     public class AudienciaViewModel
     {
         public int AudienciaId { get; set; }
+        [Display(Name = "Fecha Inicio")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
         public string Hora { get; set; }
         public string Motivo { get; set; }

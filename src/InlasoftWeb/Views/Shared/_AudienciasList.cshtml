@@ -1,48 +1,21 @@
 @model IEnumerable<InlasoftWeb.ViewModels.AudienciaViewModel>
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Fecha).Titled("Fecha").Sortable(true);
+        columns.Add(model => model.Hora).Titled("Hora");
+        columns.Add(model => model.Motivo).Titled("Materia");
+        columns.Add(model => model.Comentario).Titled("Servicio");
+        columns.Add(model => model.Trabajo).Titled("Sucursal");
+        columns.Add(Model => Html.ActionLink(string.Empty, "Details", "Audiencias", new { id = Model.AudienciaId }, new { @class = "glyphicon glyphicon-folder-open" }));
 
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Fecha)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Hora)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Motivo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Comentario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Trabajo)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Motivo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comentario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trabajo)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.AudienciaId">Details</a> |
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    })
+    .Sortable()
+    .Pageable(pager =>
+    {
+        pager.RowsPerPage = 25;
+        pager.PagesToDisplay = 5;
+    })
+)
+
