@@ -6,10 +6,9 @@
         columns.Add(model => model.Fecha).Titled("Fecha").Formatted("{0:d}").Sortable(true);
         columns.Add(model => model.Hora).Titled("Hora");
         columns.Add(model => model.Motivo).Titled("Motivo");
-        columns.Add(model => model.Comentario).Titled("Comentario");
+        columns.Add(model => model.Abogado).Titled("Abogado");
         columns.Add(model => model.Trabajo).Titled("Trabajo");
-        columns.Add(model => Html.CheckBox("Audiencia_" + model.AudienciaId, model.Transferido, new { @disabled = "disabled" }));
-        columns.Add(Model => Html.ActionLink(string.Empty, "Details", "Audiencias", new { id = Model.AudienciaId }, new { @class = "glyphicon glyphicon-folder-open" }));
+        columns.Add(model => model.Comentario).Titled("Comentario");
 
     })
     .Sortable()

@@ -3,17 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.Models
 {
-    public class Gestion : BaseModel
+    public class Documento : BaseModel
     {
         [Key]
         [Required]
-        public int GestionId { get; set; }
+        public int DocumentoId { get; set; }    
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
         public DateTime Fecha { get; set; }
         public string Hora { get; set; }
-        public string Motivo { get; set; }
+        public string Descripcion { get; set; }
         public string Comentario { get; set; }
-        public Double Trabajo { get; set; }
-        public bool Transferido { get; set; }
+        public string DocumentoTipo { get; set; }
+        public string Path { get; set; }
 
         public Caso Caso { get; set; }
         public virtual Abogado Abogado { get; set; }

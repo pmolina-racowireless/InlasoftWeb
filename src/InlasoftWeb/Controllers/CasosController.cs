@@ -46,7 +46,7 @@ namespace InlasoftWeb.Controllers
         }
 
         // GET: Casos/Details/5
-        public async Task<IActionResult> Details(string id, string tab)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -81,6 +81,8 @@ namespace InlasoftWeb.Controllers
                 .Include(c => c.Audiencias)
                     .ThenInclude(a => a.Abogado)
                 .Include(c => c.Gestiones)
+                    .ThenInclude(a => a.Abogado)
+                .Include(c => c.Documentos)
                     .ThenInclude(a => a.Abogado)
                 .Include(c => c.Cliente)
                 .Include(c => c.Sucursal)

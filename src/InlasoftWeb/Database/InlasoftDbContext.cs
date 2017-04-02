@@ -19,7 +19,8 @@ namespace InlasoftWeb.Database
         public DbSet<Abogado> Abogados { get; set; }
         public DbSet<Audiencia> Audiencias { get; set; }
         public DbSet<Gestion> Gestiones { get; set; }
-        
+        public DbSet<Documento> Documentos { get; set; }
+
         public InlasoftDbContext(DbContextOptions<InlasoftDbContext> options)
             : base(options)
         {

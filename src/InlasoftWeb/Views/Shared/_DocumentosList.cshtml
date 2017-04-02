@@ -1,0 +1,22 @@
+@model IEnumerable<InlasoftWeb.ViewModels.DocumentoViewModel>
+    @(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.Descripcion).Titled("Documento").Sortable(true);
+        columns.Add(model => model.DocumentoTipo).Titled("Tipo");
+        columns.Add(model => model.Fecha).Titled("Fecha").Formatted("{0:d}");
+        columns.Add(model => model.Hora).Titled("Hora");
+        columns.Add(model => model.Abogado).Titled("Abogado");
+        columns.Add(model => model.Comentario).Titled("Comentario");
+        columns.Add(Model => Html.Raw($"<a class=\"glyphicon glyphicon-download download-icon\" href=\"~{Model.Path}\"></>"));
+
+    })
+    .Sortable()
+    .Pageable(pager =>
+    {
+        pager.RowsPerPage = 25;
+        pager.PagesToDisplay = 5;
+    })
+    .Empty("Este caso no contiene documentos")
+    )

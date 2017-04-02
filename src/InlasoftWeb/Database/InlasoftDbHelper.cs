@@ -126,7 +126,12 @@ namespace InlasoftWeb.Database
             {
                 context.Abogados.Add(new Abogado
                 {
-                    AbogadoNombre = "Abogado de Prueba 1"
+                    AbogadoNombre = "Bruce Wayne"
+                });
+
+                context.Abogados.Add(new Abogado
+                {
+                    AbogadoNombre = "Clark Kent"
                 });
                 context.SaveChanges();
             }
@@ -148,7 +153,7 @@ namespace InlasoftWeb.Database
                 });
                 context.Audiencias.Add(new Audiencia
                 {
-                    Abogado = context.Abogados.FirstOrDefault(),
+                    Abogado = context.Abogados.LastOrDefault(),
                     Caso = context.Casos.FirstOrDefault(),
                     Comentario = "Comentario de Prueba de Audiencia 2",
                     Motivo = "Motivo de Prueba de Audiencia 2",
@@ -188,7 +193,7 @@ namespace InlasoftWeb.Database
             {
                 context.Gestiones.Add(new Gestion
                 {
-                    Abogado = context.Abogados.FirstOrDefault(),
+                    Abogado = context.Abogados.LastOrDefault(),
                     Caso = context.Casos.FirstOrDefault(),
                     Comentario = "Comentario de Prueba de Gestion 1",
                     Motivo = "Motivo de Prueba de Gestion 1",
@@ -246,6 +251,60 @@ namespace InlasoftWeb.Database
                     Transferido = true
                 });
 
+                context.SaveChanges();
+            }
+            #endregion
+
+            #region Documentos
+            if (!context.Documentos.Any())
+            {
+                context.Documentos.Add(new Documento
+                {
+                    Abogado = context.Abogados.LastOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Descripcion = "Documento de Prueba 1",
+                    Comentario = "Comentario de Documento 1",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    DocumentoTipo = "Tipo 1",
+                    Path = "/docs/Doc1.txt"
+                });
+
+                context.Documentos.Add(new Documento
+                {
+                    Abogado = context.Abogados.LastOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Descripcion = "Documento de Prueba 2",
+                    Comentario = "Comentario de Documento 2",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    DocumentoTipo = "Tipo 1",
+                    Path = "/docs/Doc2.txt"
+                });
+
+                context.Documentos.Add(new Documento
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Descripcion = "Documento de Prueba 3",
+                    Comentario = "Comentario de Documento 3",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    DocumentoTipo = "Tipo 2",
+                    Path = "/docs/Doc3.txt"
+                });
+
+                context.Documentos.Add(new Documento
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.SingleOrDefault(c => c.Descripcion.Contains("2")),
+                    Descripcion = "Documento de Prueba 4",
+                    Comentario = "Comentario de Documento 4",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    DocumentoTipo = "Tipo 1",
+                    Path = "/docs/Doc4.txt"
+                });
                 context.SaveChanges();
             }
             #endregion
