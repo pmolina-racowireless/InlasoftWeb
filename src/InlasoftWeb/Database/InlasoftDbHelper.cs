@@ -80,9 +80,9 @@ namespace InlasoftWeb.Database
             #endregion
 
             #region Firmas
-            if (!context.Firma.Any())
+            if (!context.Firmas.Any())
             {
-                context.Firma.Add(new Firma
+                context.Firmas.Add(new Firma
                 {
                     FirmaNombre = "Firma de Prueba 1"
                 });
@@ -99,7 +99,7 @@ namespace InlasoftWeb.Database
                     Catastro = "Catastro 1",
                     Contraparte = "Juan Perez",
                     Descripcion = "Caso de Prueba",
-                    Firma = context.Firma.FirstOrDefault(),
+                    Firma = context.Firmas.FirstOrDefault(),
                     Servicio = context.Servicios.FirstOrDefault(),
                     Sucursal = context.Sucursales.FirstOrDefault(),
 
@@ -111,7 +111,7 @@ namespace InlasoftWeb.Database
                     Catastro = "Catastro 2",
                     Contraparte = "Pedro Perez",
                     Descripcion = "Caso de Prueba 2",
-                    Firma = context.Firma.FirstOrDefault(),
+                    Firma = context.Firmas.FirstOrDefault(),
                     Servicio = context.Servicios.LastOrDefault(),
                     Sucursal = context.Sucursales.LastOrDefault(),
 
@@ -132,7 +132,7 @@ namespace InlasoftWeb.Database
             }
             #endregion
 
-            #region MyRegion
+            #region Audiencias
             if (!context.Audiencias.Any())
             {
                 context.Audiencias.Add(new Audiencia
@@ -143,7 +143,8 @@ namespace InlasoftWeb.Database
                     Motivo = "Motivo de Prueba de Audiencia 1",
                     Fecha = DateTime.Now,
                     Hora = DateTime.Now.TimeOfDay.ToString(),
-                    Trabajo = 1
+                    Trabajo = 1,
+                    Transferido = true
                 });
                 context.Audiencias.Add(new Audiencia
                 {
@@ -153,7 +154,8 @@ namespace InlasoftWeb.Database
                     Motivo = "Motivo de Prueba de Audiencia 2",
                     Fecha = DateTime.Now,
                     Hora = DateTime.Now.TimeOfDay.ToString(),
-                    Trabajo = 1
+                    Trabajo = 1,
+                    Transferido = true
                 });
                 context.Audiencias.Add(new Audiencia
                 {
@@ -163,7 +165,8 @@ namespace InlasoftWeb.Database
                     Motivo = "Motivo de Prueba de Audiencia 3",
                     Fecha = DateTime.Now,
                     Hora = DateTime.Now.TimeOfDay.ToString(),
-                    Trabajo = 1
+                    Trabajo = 1,
+                    Transferido = false
                 });
                 context.Audiencias.Add(new Audiencia
                 {
@@ -173,8 +176,76 @@ namespace InlasoftWeb.Database
                     Motivo = "Motivo de Prueba de Audiencia 4",
                     Fecha = DateTime.Now,
                     Hora = DateTime.Now.TimeOfDay.ToString(),
-                    Trabajo = 1
+                    Trabajo = 1,
+                    Transferido = false
                 });
+                context.SaveChanges();
+            }
+            #endregion
+
+            #region Gestiones
+            if (!context.Gestiones.Any())
+            {
+                context.Gestiones.Add(new Gestion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Gestion 1",
+                    Motivo = "Motivo de Prueba de Gestion 1",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1,
+                    Transferido = true
+                });
+
+                context.Gestiones.Add(new Gestion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Gestion 2",
+                    Motivo = "Motivo de Prueba de Gestion 2",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1,
+                    Transferido = false
+                });
+
+                context.Gestiones.Add(new Gestion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Gestion 3",
+                    Motivo = "Motivo de Prueba de Gestion 3",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1,
+                    Transferido = true
+                });
+
+                context.Gestiones.Add(new Gestion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Gestion 4",
+                    Motivo = "Motivo de Prueba de Gestion 4",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1.5,
+                    Transferido = true
+                });
+
+                context.Gestiones.Add(new Gestion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.SingleOrDefault(c => c.Descripcion.Contains("2")),
+                    Comentario = "Comentario de Prueba de Gestion 5",
+                    Motivo = "Motivo de Prueba de Gestion 5",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1,
+                    Transferido = true
+                });
+
                 context.SaveChanges();
             }
             #endregion

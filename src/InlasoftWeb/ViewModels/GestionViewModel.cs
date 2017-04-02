@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.ViewModels
 {
-    public class AudienciaViewModel : BaseModel
+    public class GestionViewModel : BaseModel
     {
-        public int AudienciaId { get; set; }
+        public int GestionId { get; set; }
         [Display(Name = "Fecha Inicio")]
         [DisplayFormat(DataFormatString = "{0:d}")]
         [DataType(DataType.Date)]
@@ -20,22 +20,20 @@ namespace InlasoftWeb.ViewModels
         public string Caso { get; set; }
         public string Abogado { get; set; }
 
-        public static explicit operator AudienciaViewModel(Audiencia audiencia)
+        public static explicit operator GestionViewModel(Gestion gestion)
         {
-            return new AudienciaViewModel
+            return new GestionViewModel
             {
-                AudienciaId = audiencia.AudienciaId,
-                Fecha = audiencia.Fecha,
-                Hora = audiencia.Hora,
-                Motivo = audiencia.Motivo,
-                Comentario = audiencia.Comentario,
-                Trabajo = audiencia.Trabajo,
-                Caso = audiencia.Caso.Descripcion,
-                Abogado = audiencia.Abogado.AbogadoNombre,
-                Transferido = audiencia.Transferido
+                GestionId = gestion.GestionId,
+                Fecha = gestion.Fecha,
+                Hora = gestion.Hora,
+                Motivo = gestion.Motivo,
+                Comentario = gestion.Comentario,
+                Trabajo = gestion.Trabajo,
+                Caso = gestion.Caso.Descripcion,
+                Abogado = gestion.Abogado.AbogadoNombre,
+                Transferido = gestion.Transferido
             };
         }
     }
-
-
 }

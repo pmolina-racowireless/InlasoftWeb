@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    ViewData["tab"] = ViewContext.HttpContext.Request.Query["tab"].ToString();
 }
 
 <h2>Detalles de Caso</h2>
@@ -38,12 +39,22 @@
     </dl>
 
     <ul class="nav nav-tabs">
-        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), string.Empty)">@Html.ActionLink("Audiencias", "Details", "Casos", new { id = Model.CasoId})</li>
-        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), "Gestiones")">@Html.ActionLink("Gestiones", "Details", "Casos", new { id = Model.CasoId, tab = "Gestiones" })</li>
-        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), "Documentos")">@Html.ActionLink("Documentos", "Details", "Casos", new { id = Model.CasoId, tab = "Documentos" })</li>
-        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), "Reuniones")">@Html.ActionLink("Reuniones", "Details", "Casos", new { id = Model.CasoId, tab = "Reuniones" })</li>
+        <li class="@TabNavigationHelper.SetActiveTab(ViewData["tab"].ToString(), string.Empty)">@Html.ActionLink("Audiencias", "Details", "Casos", new { id = Model.CasoId})</li>
+        <li class="@TabNavigationHelper.SetActiveTab(ViewData["tab"].ToString(), "Gestiones")">@Html.ActionLink("Gestiones", "Details", "Casos", new { id = Model.CasoId, tab = "Gestiones" })</li>
+        <li class="@TabNavigationHelper.SetActiveTab(ViewData["tab"].ToString(), "Documentos")">@Html.ActionLink("Documentos", "Details", "Casos", new { id = Model.CasoId, tab = "Documentos" })</li>
+        <li class="@TabNavigationHelper.SetActiveTab(ViewData["tab"].ToString(), "Reuniones")">@Html.ActionLink("Reuniones", "Details", "Casos", new { id = Model.CasoId, tab = "Reuniones" })</li>
     </ul>
-    @Html.Partial("_AudienciasList", Model.Audiencias)
+    @{
+        switch (ViewData["tab"].ToString())
+        {
+            case "":
+                @Html.Partial("_AudienciasList", Model.Audiencias)
+                break;
+            case "Gestiones":
+                @Html.Partial("_GestionesList", Model.Gestiones)
+                break;
+        }
+    }
 </div>
 <div>
     <a asp-action="Index">Volver a Listado</a>

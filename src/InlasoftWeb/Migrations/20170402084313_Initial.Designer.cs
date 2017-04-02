@@ -8,7 +8,7 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    [Migration("20170402055350_Initial")]
+    [Migration("20170402084313_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,8 @@ namespace InlasoftWeb.Migrations
                     b.Property<string>("Motivo");
 
                     b.Property<int>("Trabajo");
+
+                    b.Property<bool>("Transferido");
 
                     b.HasKey("AudienciaId");
 
@@ -152,7 +154,43 @@ namespace InlasoftWeb.Migrations
 
                     b.HasKey("FirmaId");
 
-                    b.ToTable("Firma");
+                    b.ToTable("Firmas");
+                });
+
+            modelBuilder.Entity("InlasoftWeb.Models.Gestion", b =>
+                {
+                    b.Property<int>("GestionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AbogadoId");
+
+                    b.Property<string>("CasoId");
+
+                    b.Property<string>("Comentario");
+
+                    b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<DateTime>("Fecha");
+
+                    b.Property<string>("Hora");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime?>("LastModifiedDate");
+
+                    b.Property<string>("Motivo");
+
+                    b.Property<int>("Trabajo");
+
+                    b.Property<bool>("Transferido");
+
+                    b.HasKey("GestionId");
+
+                    b.HasIndex("AbogadoId");
+
+                    b.HasIndex("CasoId");
+
+                    b.ToTable("Gestiones");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Materia", b =>
@@ -428,6 +466,17 @@ namespace InlasoftWeb.Migrations
                     b.HasOne("InlasoftWeb.Models.Sucursal", "Sucursal")
                         .WithMany()
                         .HasForeignKey("SucursalId");
+                });
+
+            modelBuilder.Entity("InlasoftWeb.Models.Gestion", b =>
+                {
+                    b.HasOne("InlasoftWeb.Models.Abogado", "Abogado")
+                        .WithMany()
+                        .HasForeignKey("AbogadoId");
+
+                    b.HasOne("InlasoftWeb.Models.Caso", "Caso")
+                        .WithMany()
+                        .HasForeignKey("CasoId");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Servicio", b =>

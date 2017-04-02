@@ -1,4 +1,4 @@
-@model IEnumerable<InlasoftWeb.ViewModels.AudienciaViewModel>
+@model IEnumerable<InlasoftWeb.ViewModels.GestionViewModel>
 @(Html
     .Grid(Model)
     .Build(columns =>
@@ -8,8 +8,8 @@
         columns.Add(model => model.Motivo).Titled("Motivo");
         columns.Add(model => model.Comentario).Titled("Comentario");
         columns.Add(model => model.Trabajo).Titled("Trabajo");
-        columns.Add(model => Html.CheckBox("Audiencia_" + model.AudienciaId, model.Transferido, new { @disabled = "disabled" }));
-        columns.Add(Model => Html.ActionLink(string.Empty, "Details", "Audiencias", new { id = Model.AudienciaId }, new { @class = "glyphicon glyphicon-folder-open" }));
+        columns.Add(model => Html.CheckBox("Gestion_" + model.GestionId, model.Transferido, new { @disabled = "disabled" }));
+        columns.Add(Model => Html.ActionLink(string.Empty, "Details", "Gestiones", new { id = Model.GestionId }, new { @class = "glyphicon glyphicon-folder-open" }));
 
     })
     .Sortable()
@@ -18,6 +18,6 @@
         pager.RowsPerPage = 25;
         pager.PagesToDisplay = 5;
     })
-    .Empty("Este caso no contiene audiencias")
-)
+    .Empty("Este caso no contiene gestiones")
+    )
 

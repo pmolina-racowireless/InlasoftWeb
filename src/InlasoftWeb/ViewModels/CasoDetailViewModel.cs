@@ -1,13 +1,11 @@
 ﻿using InlasoftWeb.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace InlasoftWeb.ViewModels
 {
-    public class CasoDetailViewModel
+    public class CasoDetailViewModel : BaseModel
     {
         [Key]
         public string CasoId { get; set; }
@@ -19,6 +17,7 @@ namespace InlasoftWeb.ViewModels
         public string Sucursal { get; set; }
 
         public List<AudienciaViewModel> Audiencias { get; set; }
+        public List<GestionViewModel> Gestiones { get; set; }
 
         public static explicit operator CasoDetailViewModel(Caso caso)
         {
@@ -30,7 +29,8 @@ namespace InlasoftWeb.ViewModels
                 Catastro = caso.Catastro,
                 Cliente = caso.Cliente.ClienteNombre,
                 Sucursal = caso.Sucursal.SucursalNombre,
-                Audiencias = caso.Audiencias.Select(x => (AudienciaViewModel)x).ToList()
+                Audiencias = caso.Audiencias.Select(x => (AudienciaViewModel)x).ToList(),
+                Gestiones = caso.Gestiones.Select(x => (GestionViewModel)x).ToList()
             };
         }
     }

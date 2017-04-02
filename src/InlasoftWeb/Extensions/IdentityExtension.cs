@@ -17,7 +17,7 @@ namespace InlasoftWeb.Extensions
             var context = app.ApplicationServices.GetService<InlasoftDbContext>();
             var roleManager = app.ApplicationServices.GetService<RoleManager<IdentityRole>>();
             var userManager = app.ApplicationServices.GetService<UserManager<ApplicationUser>>();
-            var firmaDefault = context.Firma.FirstOrDefault();
+            var firmaDefault = context.Firmas.FirstOrDefault();
 
             if (!roleManager.RoleExistsAsync("Admin").Result)
             {

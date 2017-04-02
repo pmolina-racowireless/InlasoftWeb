@@ -23,7 +23,7 @@
         columns.Add(model => model.Servicio).Titled("Servicio");
         columns.Add(model => model.Sucursal).Titled("Sucursal");
         columns.Add(model => model.Contraparte).Titled("Contraparte");
-        columns.Add(Model => Html.ActionLink(string.Empty, "Details", "Audiencias", new { id = Model.CasoId }, new { @class = "glyphicon glyphicon-folder-open" }));
+        columns.Add(Model => Html.ActionLink(string.Empty, "Details", "Casos", new { id = Model.CasoId }, new { @class = "glyphicon glyphicon-folder-open" }));
 
     })
     .Sortable()

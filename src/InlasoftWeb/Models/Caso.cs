@@ -27,5 +27,6 @@ namespace InlasoftWeb.Models
         public virtual Sucursal Sucursal { get; set; }
 
         public virtual List<Audiencia> Audiencias { get; set; }
+        public virtual List<Gestion> Gestiones { get; set; }
     }
 }

@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.Models
 {
-    public class Audiencia : BaseModel
+    public class Gestion : BaseModel
     {
         [Key]
         [Required]
-        public int AudienciaId { get; set; }
+        public int GestionId { get; set; }
         public DateTime Fecha { get; set; }
         public string Hora { get; set; }
         public string Motivo { get; set; }
@@ -17,6 +17,5 @@ namespace InlasoftWeb.Models
 
         public Caso Caso { get; set; }
         public virtual Abogado Abogado { get; set; }
-
     }
 }

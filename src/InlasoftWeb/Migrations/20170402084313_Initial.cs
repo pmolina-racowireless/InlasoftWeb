@@ -41,7 +41,7 @@ namespace InlasoftWeb.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Firma",
+                name: "Firmas",
                 columns: table => new
                 {
                     FirmaId = table.Column<string>(nullable: false),
@@ -53,7 +53,7 @@ namespace InlasoftWeb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Firma", x => x.FirmaId);
+                    table.PrimaryKey("PK_Firmas", x => x.FirmaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -148,9 +148,9 @@ namespace InlasoftWeb.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Firma_FirmaId",
+                        name: "FK_AspNetUsers_Firmas_FirmaId",
                         column: x => x.FirmaId,
-                        principalTable: "Firma",
+                        principalTable: "Firmas",
                         principalColumn: "FirmaId",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -290,9 +290,9 @@ namespace InlasoftWeb.Migrations
                         principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Casos_Firma_FirmaId",
+                        name: "FK_Casos_Firmas_FirmaId",
                         column: x => x.FirmaId,
-                        principalTable: "Firma",
+                        principalTable: "Firmas",
                         principalColumn: "FirmaId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -324,7 +324,8 @@ namespace InlasoftWeb.Migrations
                     IsActive = table.Column<bool>(nullable: false),
                     LastModifiedDate = table.Column<DateTime>(nullable: true),
                     Motivo = table.Column<string>(nullable: true),
-                    Trabajo = table.Column<int>(nullable: false)
+                    Trabajo = table.Column<int>(nullable: false),
+                    Transferido = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -337,6 +338,41 @@ namespace InlasoftWeb.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Audiencias_Casos_CasoId",
+                        column: x => x.CasoId,
+                        principalTable: "Casos",
+                        principalColumn: "CasoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Gestiones",
+                columns: table => new
+                {
+                    GestionId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AbogadoId = table.Column<string>(nullable: true),
+                    CasoId = table.Column<string>(nullable: true),
+                    Comentario = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: true),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    Hora = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(nullable: true),
+                    Motivo = table.Column<string>(nullable: true),
+                    Trabajo = table.Column<int>(nullable: false),
+                    Transferido = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gestiones", x => x.GestionId);
+                    table.ForeignKey(
+                        name: "FK_Gestiones_Abogados_AbogadoId",
+                        column: x => x.AbogadoId,
+                        principalTable: "Abogados",
+                        principalColumn: "AbogadoId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Gestiones_Casos_CasoId",
                         column: x => x.CasoId,
                         principalTable: "Casos",
                         principalColumn: "CasoId",
@@ -372,6 +408,16 @@ namespace InlasoftWeb.Migrations
                 name: "IX_Casos_SucursalId",
                 table: "Casos",
                 column: "SucursalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gestiones_AbogadoId",
+                table: "Gestiones",
+                column: "AbogadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gestiones_CasoId",
+                table: "Gestiones",
+                column: "CasoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Servicios_MateriaId",
@@ -432,6 +478,9 @@ namespace InlasoftWeb.Migrations
                 name: "Audiencias");
 
             migrationBuilder.DropTable(
+                name: "Gestiones");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -465,7 +514,7 @@ namespace InlasoftWeb.Migrations
                 name: "Sucursales");
 
             migrationBuilder.DropTable(
-                name: "Firma");
+                name: "Firmas");
 
             migrationBuilder.DropTable(
                 name: "Materias");
