@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.Models
 {
-    public class Firma
+    public class Firma : BaseModel
     {
         [Key]
         public string FirmaId { get; set; }

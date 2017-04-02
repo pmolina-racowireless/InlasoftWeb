@@ -16,6 +16,59 @@ namespace InlasoftWeb.Migrations
                 .HasAnnotation("ProductVersion", "1.1.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("InlasoftWeb.Models.Abogado", b =>
+                {
+                    b.Property<string>("AbogadoId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AbogadoNombre")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime?>("LastModifiedDate");
+
+                    b.HasKey("AbogadoId");
+
+                    b.ToTable("Abogados");
+                });
+
+            modelBuilder.Entity("InlasoftWeb.Models.Audiencia", b =>
+                {
+                    b.Property<int>("AudienciaId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AbogadoId");
+
+                    b.Property<string>("CasoId");
+
+                    b.Property<string>("Comentario");
+
+                    b.Property<DateTime?>("CreatedDate");
+
+                    b.Property<DateTime>("Fecha");
+
+                    b.Property<string>("Hora");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime?>("LastModifiedDate");
+
+                    b.Property<string>("Motivo");
+
+                    b.Property<int>("Trabajo");
+
+                    b.HasKey("AudienciaId");
+
+                    b.HasIndex("AbogadoId");
+
+                    b.HasIndex("CasoId");
+
+                    b.ToTable("Audiencias");
+                });
+
             modelBuilder.Entity("InlasoftWeb.Models.Caso", b =>
                 {
                     b.Property<string>("CasoId")
@@ -85,10 +138,16 @@ namespace InlasoftWeb.Migrations
                     b.Property<string>("FirmaId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime?>("CreatedDate");
+
                     b.Property<string>("Direccion");
 
                     b.Property<string>("FirmaNombre")
                         .IsRequired();
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime?>("LastModifiedDate");
 
                     b.HasKey("FirmaId");
 
@@ -335,6 +394,17 @@ namespace InlasoftWeb.Migrations
                     b.ToTable("ApplicationUser");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("InlasoftWeb.Models.Audiencia", b =>
+                {
+                    b.HasOne("InlasoftWeb.Models.Abogado", "Abogado")
+                        .WithMany()
+                        .HasForeignKey("AbogadoId");
+
+                    b.HasOne("InlasoftWeb.Models.Caso", "Caso")
+                        .WithMany("Audiencias")
+                        .HasForeignKey("CasoId");
                 });
 
             modelBuilder.Entity("InlasoftWeb.Models.Caso", b =>

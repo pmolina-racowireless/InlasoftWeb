@@ -1,4 +1,5 @@
-@model InlasoftWeb.ViewModels.CasoViewModel
+@model InlasoftWeb.ViewModels.CasoDetailViewModel
+@using InlasoftWeb.Helpers
 
 @{
     ViewData["Title"] = "Details";
@@ -7,38 +8,14 @@
 <h2>Detalles de Caso</h2>
 
 <div>
-    <h4>Caso</h4>
+    <h4>@Html.DisplayFor(model => model.Descripcion)</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaInicio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FechaInicio)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Contraparte)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Contraparte)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Servicio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Servicio)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Materia)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Materia)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Catastro)
@@ -59,6 +36,14 @@
             @Html.DisplayFor(model => model.Sucursal)
         </dd>
     </dl>
+
+    <ul class="nav nav-tabs">
+        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), string.Empty)">@Html.ActionLink("Audiencias", "Details", "Casos", new { id = Model.CasoId})</li>
+        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), "Gestiones")">@Html.ActionLink("Gestiones", "Details", "Casos", new { id = Model.CasoId, tab = "Gestiones" })</li>
+        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), "Documentos")">@Html.ActionLink("Documentos", "Details", "Casos", new { id = Model.CasoId, tab = "Documentos" })</li>
+        <li class="@TabNavigationHelper.SetActiveTab(ViewContext.HttpContext.Request.Query["tab"].ToString(), "Reuniones")">@Html.ActionLink("Reuniones", "Details", "Casos", new { id = Model.CasoId, tab = "Reuniones" })</li>
+    </ul>
+    @Html.Partial("_AudienciasList", Model.Audiencias)
 </div>
 <div>
     <a asp-action="Index">Volver a Listado</a>

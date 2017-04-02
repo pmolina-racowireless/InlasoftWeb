@@ -31,26 +31,6 @@ namespace InlasoftWeb.Controllers
             var userFirmaId = User.Identity.GetFirmaId();
             var caso = GetCasosByFirmaId(userFirmaId);
 
-            #region Table Sorting
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["IdSortParm"] = sortOrder == "id" ? "id_desc" : "id";
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    caso = caso.OrderByDescending(c => c.Descripcion);
-                    break;
-                case "id":
-                    caso = caso.OrderBy(c => c.CasoId);
-                    break;
-                case "id_desc":
-                    caso = caso.OrderByDescending(c => c.CasoId);
-                    break;
-                default:
-                    caso = caso.OrderBy(c => c.Descripcion);
-                    break;
-            }
-            #endregion
-
             #region Table Filtering
             ViewData["CurrentFilter"] = searchString;
 
@@ -95,16 +75,15 @@ namespace InlasoftWeb.Controllers
             return caso;
         }
 
-        private IQueryable<CasoViewModel> GetCasosByFirmaIdAndCasoId(string firmaId, string casoId)
+        private IQueryable<CasoDetailViewModel> GetCasosByFirmaIdAndCasoId(string firmaId, string casoId)
         {
             var caso = _context.Casos
-                .Include(c => c.Servicio)
-                    .ThenInclude(s => s.Materia)
+                .Include(c => c.Audiencias)
+                    .ThenInclude(a => a.Abogado)
                 .Include(c => c.Cliente)
                 .Include(c => c.Sucursal)
-                .Include(c => c.Firma)
                 .Where(c => c.Firma.FirmaId == firmaId && c.CasoId == casoId)
-                .Select(x => (CasoViewModel)x);
+                .Select(x => (CasoDetailViewModel)x);
             return caso;
         }
 

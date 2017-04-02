@@ -10,6 +10,21 @@ namespace InlasoftWeb.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Abogados",
+                columns: table => new
+                {
+                    AbogadoId = table.Column<string>(nullable: false),
+                    AbogadoNombre = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Abogados", x => x.AbogadoId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Clientes",
                 columns: table => new
                 {
@@ -30,8 +45,11 @@ namespace InlasoftWeb.Migrations
                 columns: table => new
                 {
                     FirmaId = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: true),
                     Direccion = table.Column<string>(nullable: true),
-                    FirmaNombre = table.Column<string>(nullable: false)
+                    FirmaNombre = table.Column<string>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -291,6 +309,50 @@ namespace InlasoftWeb.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Audiencias",
+                columns: table => new
+                {
+                    AudienciaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AbogadoId = table.Column<string>(nullable: true),
+                    CasoId = table.Column<string>(nullable: true),
+                    Comentario = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: true),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    Hora = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(nullable: true),
+                    Motivo = table.Column<string>(nullable: true),
+                    Trabajo = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Audiencias", x => x.AudienciaId);
+                    table.ForeignKey(
+                        name: "FK_Audiencias_Abogados_AbogadoId",
+                        column: x => x.AbogadoId,
+                        principalTable: "Abogados",
+                        principalColumn: "AbogadoId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Audiencias_Casos_CasoId",
+                        column: x => x.CasoId,
+                        principalTable: "Casos",
+                        principalColumn: "CasoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Audiencias_AbogadoId",
+                table: "Audiencias",
+                column: "AbogadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Audiencias_CasoId",
+                table: "Audiencias",
+                column: "CasoId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Casos_ClienteId",
                 table: "Casos",
@@ -367,7 +429,7 @@ namespace InlasoftWeb.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Casos");
+                name: "Audiencias");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -385,10 +447,10 @@ namespace InlasoftWeb.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Servicios");
+                name: "Abogados");
 
             migrationBuilder.DropTable(
-                name: "Sucursales");
+                name: "Casos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -397,13 +459,19 @@ namespace InlasoftWeb.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Servicios");
+
+            migrationBuilder.DropTable(
+                name: "Sucursales");
+
+            migrationBuilder.DropTable(
+                name: "Firma");
+
+            migrationBuilder.DropTable(
                 name: "Materias");
 
             migrationBuilder.DropTable(
                 name: "Clientes");
-
-            migrationBuilder.DropTable(
-                name: "Firma");
         }
     }
 }

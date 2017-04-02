@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.Models
@@ -24,5 +25,7 @@ namespace InlasoftWeb.Models
         [Required]
         public virtual Cliente Cliente { get; set; }
         public virtual Sucursal Sucursal { get; set; }
+
+        public virtual List<Audiencia> Audiencias { get; set; }
     }
 }
