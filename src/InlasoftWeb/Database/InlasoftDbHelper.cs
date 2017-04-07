@@ -308,6 +308,91 @@ namespace InlasoftWeb.Database
                 context.SaveChanges();
             }
             #endregion
+
+            #region Reuniones
+
+            if (!context.Reuniones.Any())
+            {
+                context.Reuniones.Add(new Reunion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Reunion 1",
+                    Motivo = "Motivo de Prueba de Reunion 1",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1
+                });
+
+                context.Reuniones.Add(new Reunion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Reunion 2",
+                    Motivo = "Motivo de Prueba de Reunion 2",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1
+                });
+
+                context.Reuniones.Add(new Reunion
+                {
+                    Abogado = context.Abogados.LastOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Reunion 3",
+                    Motivo = "Motivo de Prueba de Reunion 3",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1
+                });
+
+                context.Reuniones.Add(new Reunion
+                {
+                    Abogado = context.Abogados.LastOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Reunion 4",
+                    Motivo = "Motivo de Prueba de Reunion 4",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1
+                });
+
+                context.Reuniones.Add(new Reunion
+                {
+                    Abogado = context.Abogados.LastOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Reunion 5",
+                    Motivo = "Motivo de Prueba de Reunion 5",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1
+                });
+
+                context.Reuniones.Add(new Reunion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.FirstOrDefault(),
+                    Comentario = "Comentario de Prueba de Reunion 6",
+                    Motivo = "Motivo de Prueba de Reunion 6",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1
+                });
+
+                context.Reuniones.Add(new Reunion
+                {
+                    Abogado = context.Abogados.FirstOrDefault(),
+                    Caso = context.Casos.LastOrDefault(),
+                    Comentario = "Comentario de Prueba de Reunion 7",
+                    Motivo = "Motivo de Prueba de Reunion 7",
+                    Fecha = DateTime.Now,
+                    Hora = DateTime.Now.TimeOfDay.ToString(),
+                    Trabajo = 1
+                });
+
+                context.SaveChanges();
+            }
+            #endregion
         }
     }
 }

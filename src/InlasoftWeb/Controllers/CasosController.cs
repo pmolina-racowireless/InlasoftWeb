@@ -84,6 +84,8 @@ namespace InlasoftWeb.Controllers
                     .ThenInclude(a => a.Abogado)
                 .Include(c => c.Documentos)
                     .ThenInclude(a => a.Abogado)
+                .Include(c => c.Reuniones)
+                    .ThenInclude(r => r.Abogado)
                 .Include(c => c.Cliente)
                 .Include(c => c.Sucursal)
                 .Where(c => c.Firma.FirmaId == firmaId && c.CasoId == casoId)

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InlasoftWeb.ViewModels
 {
-    public class AudienciaViewModel : BaseModel
+    public class AudienciaViewModel
     {
         public int AudienciaId { get; set; }
         [Display(Name = "Fecha Inicio")]

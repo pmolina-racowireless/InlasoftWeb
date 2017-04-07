@@ -29,5 +29,6 @@ namespace InlasoftWeb.Models
         public virtual List<Audiencia> Audiencias { get; set; }
         public virtual List<Gestion> Gestiones { get; set; }
         public virtual List<Documento> Documentos { get; set; }
+        public virtual List<Reunion> Reuniones { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace InlasoftWeb.Database
         public DbSet<Audiencia> Audiencias { get; set; }
         public DbSet<Gestion> Gestiones { get; set; }
         public DbSet<Documento> Documentos { get; set; }
+        public DbSet<Reunion> Reuniones { get; set; }
 
         public InlasoftDbContext(DbContextOptions<InlasoftDbContext> options)
             : base(options)

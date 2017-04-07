@@ -19,6 +19,7 @@ namespace InlasoftWeb.ViewModels
         public List<AudienciaViewModel> Audiencias { get; set; }
         public List<GestionViewModel> Gestiones { get; set; }
         public List<DocumentoViewModel> Documentos { get; set; }
+        public List<ReunionViewModel> Reuniones { get; set; }
 
         public static explicit operator CasoDetailViewModel(Caso caso)
         {
@@ -32,7 +33,8 @@ namespace InlasoftWeb.ViewModels
                 Sucursal = caso.Sucursal.SucursalNombre,
                 Audiencias = caso.Audiencias.Select(x => (AudienciaViewModel)x).ToList(),
                 Gestiones = caso.Gestiones.Select(x => (GestionViewModel)x).ToList(),
-                Documentos = caso.Documentos.Select(x => (DocumentoViewModel)x).ToList()
+                Documentos = caso.Documentos.Select(x => (DocumentoViewModel)x).ToList(),
+                Reuniones = caso.Reuniones.Select(x => (ReunionViewModel)x).ToList()
             };
         }
     }

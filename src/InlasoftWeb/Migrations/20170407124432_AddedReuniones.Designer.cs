@@ -8,9 +8,10 @@ using InlasoftWeb.Database;
 namespace InlasoftWeb.Migrations
 {
     [DbContext(typeof(InlasoftDbContext))]
-    partial class InlasoftDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170407124432_AddedReuniones")]
+    partial class AddedReuniones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
